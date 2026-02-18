@@ -188,7 +188,8 @@
 			"core/post-comments-form": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--small)"
-				}
+				},
+				"css": "& input[type='text'], & input[type='email'], & input[type='url'], & textarea { background-color: var(--wp--preset--color--white); border: 2px solid var(--wp--preset--color--base); border-radius: 4px; padding: 0.75rem 1rem; color: var(--wp--preset--color--contrast); font-size: 1rem; width: 100%; } & input[type='text']:focus, & input[type='email']:focus, & input[type='url']:focus, & textarea:focus { border-color: var(--wp--preset--color--primary); outline: none; } & input[type='submit'] { background-color: var(--wp--preset--color--primary); color: var(--wp--preset--color--white); border: none; border-radius: 4px; padding: 0.75rem 1.5rem; font-weight: 700; cursor: pointer; } & input[type='submit']:hover { background-color: var(--wp--preset--color--secondary); }"
 			},
 			"core/comment-reply-link": {
 				"typography": {
@@ -414,6 +415,9 @@
 				":hover": {
 					"border": {
 						"color": "var(--wp--preset--color--secondary)"
+					},
+					"color": {
+						"background": "var(--wp--preset--color--secondary)"
 					}
 				}
 			},
