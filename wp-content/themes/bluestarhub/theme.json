@@ -106,13 +106,13 @@
 			"fontSizes": [
 				{
 					"slug": "small",
-					"size": "1.125rem",
+					"size": "1rem",
 					"name": "Small",
 					"fluid": false
 				},
 				{
 					"slug": "medium",
-					"size": "1.5rem",
+					"size": "1.125rem",
 					"name": "Medium",
 					"fluid": false
 				},
@@ -291,6 +291,11 @@
 				"color": {
 					"text": "var(--wp--preset--color--slate-gray)"
 				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--system)",
+					"fontSize": "var(--wp--preset--font-size--medium)",
+					"lineHeight": "1.7"
+				},
 				"spacing": {
 					"margin": {
 						"bottom": "1rem"
@@ -302,6 +307,7 @@
 					"text": "var(--wp--preset--color--dark-navy)"
 				},
 				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--system)",
 					"fontWeight": "700",
 					"lineHeight": "1.3"
 				},
