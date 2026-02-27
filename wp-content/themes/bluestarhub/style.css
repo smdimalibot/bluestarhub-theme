@@ -15,3 +15,53 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Generated on fullsiteediting.com. No code version.
 */
+
+/*
+Theme Name: BlueStarHub
+Version: 1.0
+*/
+
+.wp-site-blocks {
+	padding-top: 0 !important;
+}
+
+.wp-block-navigation__container {
+	gap: 2rem;
+}
+
+.wp-block-navigation .wp-block-navigation-item a {
+	padding: 0.5rem 0;
+	transition: color 0.2s ease;
+}
+
+.wp-block-navigation .wp-block-navigation-item a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.wp-block-site-title a {
+	text-decoration: none;
+}
+
+.wp-block-group.alignfull {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+footer a {
+	color: #ffffff;
+	text-decoration: none;
+	transition: opacity 0.2s ease;
+}
+
+footer a:hover {
+	opacity: 0.8;
+	text-decoration: underline;
+}
+
+.wp-block-social-links a {
+	transition: transform 0.2s ease;
+}
+
+.wp-block-social-links a:hover {
+	transform: scale(1.1);
+}
