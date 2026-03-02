@@ -65,3 +65,31 @@ footer a:hover {
 .wp-block-social-links a:hover {
 	transform: scale(1.1);
 }
+
+header.wp-block-template-part {
+	background-color: #0e1b26 !important;
+	color: #ffffff !important;
+}
+
+header.wp-block-template-part .wp-block-group {
+	background-color: #0e1b26 !important;
+}
+
+header.wp-block-template-part a,
+header.wp-block-template-part .wp-block-site-title,
+header.wp-block-template-part .wp-block-navigation a {
+	color: #ffffff !important;
+}
+
+footer.wp-block-template-part {
+	background-color: #f5f5f5 !important;
+	color: #1d252c !important;
+}
+
+footer.wp-block-template-part .wp-block-group {
+	background-color: #f5f5f5 !important;
+}
+
+footer.wp-block-template-part a {
+	color: #1d252c !important;
+}
