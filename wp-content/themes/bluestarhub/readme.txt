@@ -1,12 +1,12 @@
 === BlueStarHub ===
-Contributors: SEAN MAVERICK RHEA DIMALIBOT
+Contributors: Maverick Dimalibot
 Tested up to: 6.4
 Requires at least: 6.1
 Requires PHP: 7.4
 Version: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Copyright: SEAN MAVERICK RHEA DIMALIBOT
+Copyright: Maverick Dimalibot
 
 A full site editing theme. No code version.
 
