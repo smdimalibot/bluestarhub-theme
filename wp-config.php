@@ -100,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** Disabled File Edit */
-defined( 'DISALLOW_FILE_EDIT' );
+defined( 'DISALLOW_FILE_EDIT' ) || define( 'DISALLOW_FILE_EDIT', true );
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
