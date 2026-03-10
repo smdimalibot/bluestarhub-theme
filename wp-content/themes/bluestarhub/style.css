@@ -23,70 +23,54 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 .wp-block-template-part + .wp-block-group {
   margin-top: 0 !important;
-  padding-top: 0 !important;
 }
 
 .entry-content,
 .wp-block-post-content,
 main {
-  padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
 .woocommerce-page main,
 .single-product main {
-  padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
-/* ============================================================
-   20. RESPONSIVE — MOBILE (max-width: 768px)
-   ============================================================ */
-/* @media (max-width: 768px) {
-  h1 { font-size: var(--font-size-xl); }
-  h2 { font-size: var(--font-size-lg); }
-
-  .wp-block-cover {
-    min-height: 350px !important;
-  }
-
-  .wp-block-cover__inner-container h1 {
-    font-size: var(--font-size-xl);
-  }
-
-  .wp-block-columns {
-    flex-direction: column !important;
-  }
-
-  .wp-block-post-template {
-    grid-template-columns: 1fr !important;
-  }
-
-  .woocommerce-account .woocommerce-MyAccount-navigation {
-    width: 100%;
-  }
-
-  .woocommerce-account .woocommerce-MyAccount-content {
-    padding-left: 0;
-    padding-top: var(--spacing-md);
-  }
-
+@media (max-width: 1024px) {
   .gutena-form-block,
   .wp-block-gutena-forms {
-    padding: var(--spacing-md);
-  }
-
-  .wp-block-query {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: 48px 24px !important;
   }
 }
 
-@media (max-width: 1024px) {
-  .wp-block-post-template {
-    grid-template-columns: repeat(2, 1fr) !important;
+@media (max-width: 768px) {
+  .gutena-form-block,
+  .wp-block-gutena-forms {
+    padding: 32px 16px !important;
   }
 
-  .wp-block-woocommerce-product-collection .products {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .gutena-form-block input,
+  .gutena-form-block textarea,
+  .gutena-form-block select {
+    width: 50% !important;
+    box-sizing: border-box !important;
   }
-} */
+
+  .gutena-form-block button[type="submit"] {
+    width: 100% !important;
+  }
+
+  .gutena-form-block .wp-block-row,
+  .gutena-form-block .confirmation-message,
+  .wp-block-gutena-forms .wp-block-row {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+}

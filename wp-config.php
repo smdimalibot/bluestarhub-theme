@@ -99,5 +99,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
 
+/** Disabled File Edit */
+defined( 'DISALLOW_FILE_EDIT' );
+
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
