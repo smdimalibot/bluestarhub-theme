@@ -22,6 +22,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 /*
+ * Global typography reset for headings and paragraphs.
+ * Remove default browser background, padding, and margin from text elements.
+ */
+h1, h2, h3, h4, h5, h6, p {
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*
  * Block template and content spacing normalization.
  * Prevent extra top spacing between template parts and page content.
  */
@@ -44,6 +54,25 @@ main {
 .woocommerce-page main,
 .single-product main {
   margin-top: 0 !important;
+}
+
+/* Remove unwanted gap between last
+   content group and the footer on the
+   Single Item: Project template */
+.single-projects .wp-block-group {
+    margin-bottom: 0;
+}
+
+.footer-widgets .wp-block-group {
+    margin-top: 0;
+}
+
+/* Force the Excerpt block text color
+   to white inside the hero Group block on the
+   Single Item: Project template */
+.single-projects .wp-block-post-excerpt p,
+.single-projects .wp-block-post-excerpt__excerpt {
+    color: #B0C4DE !important;
 }
 
 /*
@@ -96,3 +125,62 @@ main {
     white-space: normal !important;
   }
 }
+
+/* ============================================
+   HEADING SIZES — DESKTOP, TABLET, MOBILE
+   ============================================ */
+
+/* Theme heading size scale used by desktop, tablet, and mobile breakpoints. */
+h1, .wp-block-post-title {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+/* Tablet — medium screen heading sizes */
+@media (max-width: 1024px) {
+    h1, .wp-block-post-title {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+}
+
+/* Mobile — small screen heading sizes */
+@media (max-width: 768px) {
+    h1, .wp-block-post-title {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+}exerept
