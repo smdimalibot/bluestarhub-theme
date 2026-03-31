@@ -21,34 +21,54 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Enqueue via functions.php: wp_enqueue_style('bluestarhub-custom', get_template_directory_uri() . '/bluestarhub-style.css');
  */
 
+/*
+ * Block template and content spacing normalization.
+ * Prevent extra top spacing between template parts and page content.
+ */
 .wp-block-template-part + .wp-block-group {
+  /* Remove default top margin between adjacent template part groups. */
   margin-top: 0 !important;
 }
 
 .entry-content,
 .wp-block-post-content,
 main {
+  /* Normalize top spacing for primary content containers across the site. */
   margin-top: 0 !important;
 }
 
+/*
+ * WooCommerce product and shop page spacing fix.
+ * Align main container spacing with the rest of the theme.
+ */
 .woocommerce-page main,
 .single-product main {
   margin-top: 0 !important;
 }
 
+/*
+ * Responsive Gutena form styling.
+ * Adjust form padding and layout for tablet and mobile breakpoints.
+ */
 @media (max-width: 1024px) {
   .gutena-form-block,
   .wp-block-gutena-forms {
+    /* Provide comfortable form padding on tablet widths. */
     padding: 48px 24px !important;
   }
 }
 
+/* Mobile Gutena form layout adjustments.
+ * Stack fields and buttons cleanly on narrow screens.
+ */
 @media (max-width: 768px) {
   .gutena-form-block,
   .wp-block-gutena-forms {
+    /* Reduce mobile form padding while preserving internal spacing. */
     padding: 32px 16px !important;
   }
 
+  /* Limit form field width on mobile so inputs remain readable and won't overflow. */
   .gutena-form-block input,
   .gutena-form-block textarea,
   .gutena-form-block select {
@@ -56,10 +76,12 @@ main {
     box-sizing: border-box !important;
   }
 
+  /* Force the submit button to fill the available mobile form width. */
   .gutena-form-block button[type="submit"] {
     width: 100% !important;
   }
 
+  /* Stack row containers vertically, center content, and prevent overflow on narrow screens. */
   .gutena-form-block .wp-block-row,
   .gutena-form-block .confirmation-message,
   .wp-block-gutena-forms .wp-block-row {
