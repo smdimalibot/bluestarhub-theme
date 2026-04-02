@@ -31,6 +31,14 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
+/* Fix author name text color in the
+   Single Item: Project hero section */
+.single-projects .wp-block-post-author__name,
+.single-projects .wp-block-post-author__name a,
+.single-projects .wp-block-post-author {
+    color: #B0C4DE !important;
+}
+
 /*
  * Block template and content spacing normalization.
  * Prevent extra top spacing between template parts and page content.
