@@ -31,6 +31,19 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
+/* Fix excerpt text color in the
+   Featured Projects Query Loop on homepage */
+.home .wp-block-post-excerpt__excerpt,
+.home .wp-block-post-excerpt p {
+    color: #4A5568 !important;
+}
+
+/* Fix "Add read more" link text color
+   in the Query Loop excerpt */
+.home .wp-block-post-excerpt__more-link {
+    color: #4A5568 !important;
+}
+
 /* Fix author name text color in the
    Single Item: Project hero section */
 .single-projects .wp-block-post-author__name,
