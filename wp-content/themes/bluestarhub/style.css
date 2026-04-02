@@ -205,3 +205,315 @@ h4 {
         font-size: 16px;
     }
 }
+
+/* ============================================================
+   BLUESTARHUB — HOMEPAGE CUSTOM CSS
+   Applied via: Appearance → Customize → Additional CSS
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. BUTTON STANDARDIZATION
+   Fixes inconsistent button styles sitewide
+   ------------------------------------------------------------ */
+
+/* Primary solid button — used on product cards, project cards */
+.wp-block-button__link {
+  background-color: #0d1b3e;
+  color: #ffffff;
+  border: 2px solid #0d1b3e;
+  border-radius: 4px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus {
+  background-color: #1a3a6b;
+  border-color: #1a3a6b;
+  color: #ffffff;
+  outline: 2px solid #4fc3f7; /* WAVE/focus ring for accessibility */
+  outline-offset: 2px;
+}
+
+/* Outlined/ghost button — used on dark sections (hero, CTA, Digital Services) */
+.wp-block-button.is-style-outline .wp-block-button__link {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:focus {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+
+/* ------------------------------------------------------------
+   2. FIX: "View All Projects" — remove yellow, match dark sections
+   ------------------------------------------------------------ */
+
+/* Target the View All Projects button in the Featured Projects area.
+   Add a custom CSS class "bsh-btn-outline" to that button block
+   via its Advanced panel in the editor. */
+.bsh-btn-outline .wp-block-button__link {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 4px !important;
+  padding: 12px 28px !important;
+}
+
+.bsh-btn-outline .wp-block-button__link:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* ------------------------------------------------------------
+   3. FIX: WooCommerce product title links — override default blue
+   Makes product card titles match the brand dark navy color
+   ------------------------------------------------------------ */
+
+.wc-block-grid__product-title a,
+.woocommerce ul.products .woocommerce-loop-product__title,
+.wp-block-woocommerce-product-template .woocommerce-loop-product__title a {
+  color: #0d1b3e !important;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.wc-block-grid__product-title a:hover,
+.woocommerce ul.products .woocommerce-loop-product__title:hover {
+  color: #1a3a6b !important;
+  text-decoration: underline;
+}
+
+
+/* ------------------------------------------------------------
+   4. FIX: Nav/Header search button — replace cyan with navy
+   ------------------------------------------------------------ */
+
+.wp-block-search__button,
+.wp-block-navigation .wp-block-search__button {
+  background-color: #1a3a6b !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 8px 14px !important;
+}
+
+.wp-block-search__button:hover {
+  background-color: #0d1b3e !important;
+}
+
+
+/* ------------------------------------------------------------
+   5. SECTION BACKGROUNDS — full-width dark sections
+   Ensures dark content sections stretch edge to edge
+   ------------------------------------------------------------ */
+
+/* Featured Projects and Digital Services sections must be full width.
+   Add CSS class "bsh-section-dark" to each dark Group block
+   via Block → Advanced → Additional CSS class */
+.bsh-section-dark {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #0d1b3e;
+  padding: 80px 48px;
+  box-sizing: border-box;
+}
+
+
+/* ------------------------------------------------------------
+   6. TYPOGRAPHY — headings and body consistency
+   ------------------------------------------------------------ */
+
+/* Section headings (H2) — Our Services, Featured Projects, etc. */
+.wp-block-heading h2,
+h2.wp-block-heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Section subheadings / subtitles (paragraphs under H2) */
+.bsh-section-subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 8px;
+  margin-bottom: 40px;
+}
+
+/* Body paragraphs */
+p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* ------------------------------------------------------------
+   7. RESPONSIVE BREAKPOINTS
+   Desktop: 1024px+ | Tablet: 768–1023px | Mobile: up to 767px
+   ------------------------------------------------------------ */
+
+/* --- TABLET (768px – 1023px) --- */
+@media (max-width: 1023px) {
+
+  /* Reduce section padding */
+  .bsh-section-dark {
+    padding: 48px 32px;
+  }
+
+  /* Stack two-column layouts (Digital Services, hero banner) */
+  .wp-block-columns {
+    flex-wrap: wrap !important;
+  }
+
+  .wp-block-column {
+    flex-basis: 100% !important;
+    min-width: 100% !important;
+  }
+
+  /* Reduce heading size on tablet */
+  h2.wp-block-heading {
+    font-size: 28px;
+  }
+
+  /* Reduce hero banner heading */
+  .bsh-hero-heading {
+    font-size: 30px;
+  }
+
+  /* Reduce card gap */
+  .wp-block-columns.wp-block-columns,
+  .wc-block-grid__products {
+    gap: 24px !important;
+  }
+}
+
+
+/* --- MOBILE (up to 767px) --- */
+@media (max-width: 767px) {
+
+  /* Tighten section padding on mobile */
+  .bsh-section-dark {
+    padding: 32px 20px;
+  }
+
+  /* Full-width sections recalculate on mobile */
+  .bsh-section-dark {
+    margin-left: -20px;
+    margin-right: -20px;
+    width: calc(100% + 40px);
+  }
+
+  /* Heading sizes — scale down for mobile */
+  h1.wp-block-heading {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  h2.wp-block-heading {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  /* Buttons — full width on mobile for better tap targets */
+  .wp-block-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .wp-block-button__link {
+    width: 100%;
+    display: block;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  /* Product/project cards — single column stack */
+  .wc-block-grid__products,
+  .wp-block-columns {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Hero banner — stack image and text on mobile */
+  .wp-block-media-text {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wp-block-media-text .wp-block-media-text__media {
+    order: 1;
+  }
+
+  .wp-block-media-text .wp-block-media-text__content {
+    order: 2;
+    padding: 32px 20px;
+  }
+
+  /* Nav icons — reduce gap on mobile */
+  .wp-block-navigation__container {
+    gap: 8px !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   8. WAVE / ACCESSIBILITY — focus states and contrast
+   ------------------------------------------------------------ */
+
+/* Visible focus rings for keyboard navigation (WAVE compliance) */
+a:focus,
+button:focus,
+.wp-block-button__link:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 3px;
+}
+
+/* Ensure footer copyright text has sufficient contrast
+   #9ab0c8 on #080f1e = ~5.8:1 contrast ratio — passes WCAG AA */
+.wp-block-site-tagline,
+footer p,
+footer .copyright {
+  color: #9ab0c8;
+  font-size: 13px;
+}
+
+/* Skip to main content link (add manually as HTML block at top of page
+   for full WAVE compliance) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #0d1b3e;
+  color: #ffffff;
+  padding: 8px 16px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
