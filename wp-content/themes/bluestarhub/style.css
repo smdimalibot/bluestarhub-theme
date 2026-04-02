@@ -517,3 +517,251 @@ footer .copyright {
 .skip-to-content:focus {
   top: 0;
 }
+
+/* ============================================================
+   BLUESTARHUB — ABOUT & CONTACT PAGE CSS
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   ABOUT PAGE
+   ------------------------------------------------------------ */
+
+/* Constrain inner content to readable max-width, centered */
+.bsh-content-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  box-sizing: border-box;
+}
+
+/* Sub-section headings: Our Focus, Our Vision, etc. */
+.bsh-content-wrap h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0d1b3e;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+/* Body paragraphs in about page */
+.bsh-content-wrap p {
+  font-size: 16px;
+  color: #2d3748;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* Bullet list items */
+.bsh-content-wrap ul li {
+  font-size: 16px;
+  color: #2d3748;
+  line-height: 1.7;
+  padding-left: 4px;
+  margin-bottom: 6px;
+}
+
+/* About page — responsive tablet */
+@media (max-width: 1023px) {
+  .bsh-content-wrap {
+    padding: 48px 32px;
+  }
+
+  /* Stack Media & Text block on tablet */
+  .bsh-content-wrap .wp-block-media-text {
+    grid-template-columns: 1fr !important;
+  }
+
+  .bsh-content-wrap .wp-block-media-text__media img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* About page — responsive mobile */
+@media (max-width: 767px) {
+  .bsh-content-wrap {
+    padding: 32px 20px;
+  }
+
+  .bsh-content-wrap h2 {
+    font-size: 20px;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   CONTACT PAGE — FORM STYLING
+   Targets WPForms or similar block-based form plugin
+   ------------------------------------------------------------ */
+
+/* Form container wrapper — add CSS class "bsh-contact-form" to form Group */
+.bsh-contact-form {
+  max-width: 760px;
+  margin: 60px auto;
+  padding: 48px;
+  background-color: #ffffff;
+  border: 1px solid #dde5ef;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+/* Field labels */
+.bsh-contact-form label,
+.bsh-contact-form .wpforms-field-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0d1b3e;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* All input fields and textarea */
+.bsh-contact-form input[type="text"],
+.bsh-contact-form input[type="email"],
+.bsh-contact-form textarea,
+.bsh-contact-form .wpforms-field-medium,
+.bsh-contact-form .wpforms-field-large {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #1a202c;
+  background-color: #f8fafc;
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 20px;
+}
+
+/* Textarea height */
+.bsh-contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Focus state — WCAG AA keyboard accessible */
+.bsh-contact-form input:focus,
+.bsh-contact-form textarea:focus {
+  border-color: #0d1b3e;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.35);
+  outline: none;
+  background-color: #ffffff;
+}
+
+/* Hover state on inputs */
+.bsh-contact-form input:hover,
+.bsh-contact-form textarea:hover {
+  border-color: #7a9cbf;
+}
+
+/* Error state — shown on invalid/required fields */
+.bsh-contact-form input.wpforms-error,
+.bsh-contact-form textarea.wpforms-error,
+.bsh-contact-form input:invalid:not(:placeholder-shown),
+.bsh-contact-form textarea:invalid:not(:placeholder-shown) {
+  border-color: #c0392b;
+  background-color: #fff5f5;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+}
+
+/* Error message text */
+.bsh-contact-form .wpforms-error-container,
+.bsh-contact-form label.wpforms-error {
+  font-size: 13px;
+  color: #c0392b;
+  margin-top: -14px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Placeholder text color — sufficient contrast on light bg */
+.bsh-contact-form input::placeholder,
+.bsh-contact-form textarea::placeholder {
+  color: #8fa3b8; /* ~4.6:1 on #f8fafc — passes WCAG AA for placeholder */
+  font-size: 15px;
+}
+
+/* Checkbox styling */
+.bsh-contact-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0d1b3e;
+  cursor: pointer;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Privacy/Terms links */
+.bsh-contact-form a {
+  color: #0d1b3e;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid #0d1b3e;
+}
+
+.bsh-contact-form a:hover {
+  color: #1a3a6b;
+  border-bottom-color: #1a3a6b;
+}
+
+/* Submit button */
+.bsh-contact-form .wp-block-button__link,
+.bsh-contact-form button[type="submit"],
+.bsh-contact-form .wpforms-submit {
+  width: 200px;
+  display: block;
+  margin: 24px auto 0;
+  padding: 14px 40px;
+  background-color: #0d1b3e;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.25s ease;
+  letter-spacing: 0.4px;
+}
+
+.bsh-contact-form button[type="submit"]:hover,
+.bsh-contact-form .wpforms-submit:hover {
+  background-color: #1a3a6b;
+}
+
+/* Submit button focus — keyboard accessible */
+.bsh-contact-form button[type="submit"]:focus,
+.bsh-contact-form .wpforms-submit:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 3px;
+}
+
+/* Success confirmation message */
+.bsh-contact-form .wpforms-confirmation-container,
+.bsh-contact-form .wpforms-confirmation-container-full {
+  background-color: #e6f4ea;
+  color: #1e6e3a;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-radius: 4px;
+  border-left: 4px solid #1e6e3a;
+  margin-top: 24px;
+}
+
+/* Mobile — responsive form */
+@media (max-width: 767px) {
+  .bsh-contact-form {
+    padding: 32px 20px;
+    margin: 32px 16px;
+  }
+
+  /* Submit button full width on mobile */
+  .bsh-contact-form button[type="submit"],
+  .bsh-contact-form .wpforms-submit {
+    width: 100%;
+  }
+}
