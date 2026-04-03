@@ -765,3 +765,536 @@ footer .copyright {
     width: 100%;
   }
 }
+
+/* ============================================================
+   BLUESTARHUB — WOOCOMMERCE TEMPLATES CSS
+   Applies to: Shop, Single Product, Search Results, Catalog/Tag/Attribute
+   Version: 2 — Stripe untouched, distinct product image shadows
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. GLOBAL SHOP WRAPPER
+   Add CSS class "bsh-shop-wrap" to the main content Group
+   in each WooCommerce template via Block → Advanced → CSS class
+   ------------------------------------------------------------ */
+
+.bsh-shop-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 48px;
+  box-sizing: border-box;
+  background-color: #f0f4f8;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .bsh-shop-wrap {
+    padding: 40px 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .bsh-shop-wrap {
+    padding: 32px 20px;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   2. PRODUCT GRID — 3-column layout, gaps, card structure
+   ------------------------------------------------------------ */
+
+/* Force 3-column grid on all product loops */
+.woocommerce ul.products,
+.wc-block-grid__products {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 32px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Tablet — 2 columns */
+@media (max-width: 1023px) {
+  .woocommerce ul.products,
+  .wc-block-grid__products {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+  }
+}
+
+/* Mobile — single column */
+@media (max-width: 767px) {
+  .woocommerce ul.products,
+  .wc-block-grid__products {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* Product card */
+.woocommerce ul.products li.product,
+.wc-block-grid__product {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 0 0 24px 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Card-level shadow — subtle lift only */
+  box-shadow: 0 2px 8px rgba(13, 27, 62, 0.07);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  max-width: 100%;
+}
+
+.woocommerce ul.products li.product:hover,
+.wc-block-grid__product:hover {
+  box-shadow: 0 8px 28px rgba(13, 27, 62, 0.13);
+  transform: translateY(-2px);
+}
+
+
+/* ------------------------------------------------------------
+   3. PRODUCT IMAGES — distinct, bold shadow treatment
+   This is the primary visual upgrade in this version.
+   Shadow uses the brand navy at higher opacity for depth
+   and a secondary ambient layer for a lifted, dimensional look.
+   ------------------------------------------------------------ */
+
+/* Grid / loop product images */
+.woocommerce ul.products li.product img,
+.wc-block-grid__product-image img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+  display: block;
+  margin-bottom: 16px;
+
+  /* Two-layer shadow:
+     Layer 1 — tight, dark, close to the image (definition)
+     Layer 2 — wide, soft, offset downward (depth/lift) */
+  box-shadow:
+    0 4px 10px rgba(13, 27, 62, 0.30),
+    0 12px 32px rgba(13, 27, 62, 0.18);
+
+  transition: box-shadow 0.25s ease;
+}
+
+/* On card hover — shadow intensifies to reinforce the lift */
+.woocommerce ul.products li.product:hover img,
+.wc-block-grid__product:hover .wc-block-grid__product-image img {
+  box-shadow:
+    0 6px 14px rgba(13, 27, 62, 0.38),
+    0 18px 40px rgba(13, 27, 62, 0.22);
+}
+
+/* Tablet — slightly reduce shadow scale */
+@media (max-width: 1023px) {
+  .woocommerce ul.products li.product img,
+  .wc-block-grid__product-image img {
+    height: 220px;
+    box-shadow:
+      0 4px 8px rgba(13, 27, 62, 0.28),
+      0 10px 26px rgba(13, 27, 62, 0.15);
+  }
+}
+
+/* Mobile — tighter shadow, full width image */
+@media (max-width: 767px) {
+  .woocommerce ul.products li.product img,
+  .wc-block-grid__product-image img {
+    height: 200px;
+    box-shadow:
+      0 3px 7px rgba(13, 27, 62, 0.25),
+      0 8px 20px rgba(13, 27, 62, 0.13);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   4. PRODUCT TITLES, PRICES, BUTTONS
+   ------------------------------------------------------------ */
+
+/* Product title — remove WooCommerce default blue */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.wc-block-grid__product-title {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #0d1b3e !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+  padding: 0 16px !important;
+  margin-bottom: 8px !important;
+  text-decoration: none !important;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title:hover {
+  color: #1a3a6b !important;
+}
+
+/* Price */
+.woocommerce ul.products li.product .price,
+.wc-block-grid__product-price {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #0d1b3e !important;
+  text-align: center !important;
+  margin-bottom: 16px !important;
+}
+
+/* Strike-through original price */
+.woocommerce ul.products li.product .price del,
+.wc-block-grid__product-price del {
+  color: #9ab0c8 !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  margin-right: 6px;
+}
+
+/* Add to cart / in cart buttons */
+.woocommerce ul.products li.product .button,
+.wc-block-grid__product .add_to_cart_button {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 12px 24px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: background-color 0.25s ease !important;
+  cursor: pointer;
+}
+
+.woocommerce ul.products li.product .button:hover,
+.wc-block-grid__product .add_to_cart_button:hover {
+  background-color: #1a3a6b !important;
+}
+
+/* Keyboard focus ring — WAVE/WCAG */
+.woocommerce ul.products li.product .button:focus {
+  outline: 2px solid #4fc3f7 !important;
+  outline-offset: 2px !important;
+}
+
+/* "X in cart" state */
+.woocommerce ul.products li.product .added_to_cart,
+.woocommerce ul.products li.product .added {
+  background-color: #1a3a6b !important;
+}
+
+
+/* ------------------------------------------------------------
+   5. SALE BADGE
+   ------------------------------------------------------------ */
+
+.woocommerce span.onsale,
+.wc-block-grid__product-onsale {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  border-radius: 4px !important;
+  padding: 4px 10px !important;
+  min-height: unset !important;
+  min-width: unset !important;
+  line-height: 1.4 !important;
+}
+
+
+/* ------------------------------------------------------------
+   6. BREADCRUMBS
+   ------------------------------------------------------------ */
+
+.woocommerce .woocommerce-breadcrumb {
+  font-size: 13px !important;
+  color: #4a5568 !important;
+  margin-bottom: 20px !important;
+}
+
+.woocommerce .woocommerce-breadcrumb a {
+  color: #0d1b3e !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+
+.woocommerce .woocommerce-breadcrumb a:hover {
+  color: #1a3a6b !important;
+  text-decoration: underline !important;
+}
+
+
+/* ------------------------------------------------------------
+   7. RESULTS COUNT + SORTING
+   Visually styled on desktop; hidden on mobile via Block Visibility
+   ------------------------------------------------------------ */
+
+.woocommerce-result-count {
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.woocommerce-ordering select {
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #0d1b3e;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.woocommerce-ordering select:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+  border-color: #0d1b3e;
+}
+
+
+/* ------------------------------------------------------------
+   8. SINGLE PRODUCT PAGE
+   ------------------------------------------------------------ */
+
+/* Product image — bold shadow, more dramatic than grid cards
+   Uses a three-layer stack for a premium lifted look */
+.woocommerce div.product div.images img {
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* Three-layer shadow:
+     Layer 1 — sharp close shadow (definition)
+     Layer 2 — medium spread (depth)
+     Layer 3 — large soft ambient shadow (lift/drama) */
+  box-shadow:
+    0 4px 8px rgba(13, 27, 62, 0.32),
+    0 12px 28px rgba(13, 27, 62, 0.20),
+    0 24px 56px rgba(13, 27, 62, 0.12);
+
+  transition: box-shadow 0.3s ease;
+}
+
+.woocommerce div.product div.images img:hover {
+  box-shadow:
+    0 6px 12px rgba(13, 27, 62, 0.38),
+    0 16px 36px rgba(13, 27, 62, 0.24),
+    0 32px 64px rgba(13, 27, 62, 0.14);
+}
+
+/* Mobile — scale back single product shadow */
+@media (max-width: 767px) {
+  .woocommerce div.product div.images img {
+    box-shadow:
+      0 4px 10px rgba(13, 27, 62, 0.28),
+      0 10px 24px rgba(13, 27, 62, 0.15);
+  }
+}
+
+/* Product title H1 */
+.woocommerce div.product h1.product_title {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: #0d1b3e !important;
+  line-height: 1.2 !important;
+  margin-bottom: 12px !important;
+}
+
+/* Price */
+.woocommerce div.product p.price,
+.woocommerce div.product span.price {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #0d1b3e !important;
+}
+
+.woocommerce div.product p.price del,
+.woocommerce div.product span.price del {
+  color: #9ab0c8 !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  margin-right: 8px;
+}
+
+/* Short description */
+.woocommerce div.product div.woocommerce-product-details__short-description p {
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+/* Quantity input */
+.woocommerce div.product form.cart .qty {
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 16px;
+  color: #0d1b3e;
+  width: 72px;
+  text-align: center;
+}
+
+/* Add to cart — single product */
+.woocommerce div.product form.cart .single_add_to_cart_button {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 14px 32px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  letter-spacing: 0.4px;
+}
+
+.woocommerce div.product form.cart .single_add_to_cart_button:hover {
+  background-color: #1a3a6b !important;
+}
+
+.woocommerce div.product form.cart .single_add_to_cart_button:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+/* Category and tag links */
+.woocommerce div.product .posted_in a,
+.woocommerce div.product .tagged_as a {
+  color: #4a5568 !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+}
+
+.woocommerce div.product .posted_in a:hover,
+.woocommerce div.product .tagged_as a:hover {
+  color: #0d1b3e !important;
+  text-decoration: underline !important;
+}
+
+/* Description/Reviews tabs */
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  font-size: 15px;
+  font-weight: 600;
+  color: #9ab0c8;
+  text-decoration: none;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  color: #0d1b3e;
+  border-bottom: 2px solid #0d1b3e;
+}
+
+/* Description tab body text */
+.woocommerce div.product .woocommerce-Tabs-panel p {
+  font-size: 16px;
+  color: #2d3748;
+  line-height: 1.75;
+}
+
+
+/* ------------------------------------------------------------
+   9. SEARCH RESULTS PAGE
+   ------------------------------------------------------------ */
+
+/* Search bar input */
+.woocommerce-product-search input[type="search"] {
+  max-width: 700px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a202c;
+  display: block;
+  margin: 0 auto 24px;
+  box-sizing: border-box;
+}
+
+.woocommerce-product-search input[type="search"]:focus {
+  border-color: #0d1b3e;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.35);
+  outline: none;
+}
+
+/* Search submit button */
+.woocommerce-product-search button[type="submit"] {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 12px 20px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.woocommerce-product-search button[type="submit"]:hover {
+  background-color: #1a3a6b !important;
+}
+
+/* Search results heading */
+.woocommerce-products-header__title.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d1b3e;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+
+/* ------------------------------------------------------------
+   10. PAGINATION
+   ------------------------------------------------------------ */
+
+.woocommerce nav.woocommerce-pagination ul li a,
+.woocommerce nav.woocommerce-pagination ul li span {
+  font-size: 14px;
+  color: #0d1b3e;
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+/* Active page number */
+.woocommerce nav.woocommerce-pagination ul li span.current {
+  background-color: #0d1b3e;
+  color: #ffffff;
+  border-color: #0d1b3e;
+}
+
+.woocommerce nav.woocommerce-pagination ul li a:hover {
+  background-color: #f0f4f8;
+}
+
+
+/* ------------------------------------------------------------
+   11. EMPTY / NO RESULTS STATE
+   ------------------------------------------------------------ */
+
+.woocommerce-info {
+  font-size: 16px;
+  color: #4a5568;
+  text-align: center;
+  border-top: 3px solid #0d1b3e;
+  background-color: #f0f4f8;
+  padding: 20px 24px;
+  border-radius: 0 0 4px 4px;
+}
+
+.woocommerce-info a {
+  color: #0d1b3e;
+  font-weight: 600;
+  text-decoration: underline;
+}
