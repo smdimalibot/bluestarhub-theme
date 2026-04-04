@@ -1298,3 +1298,635 @@ footer .copyright {
   font-weight: 600;
   text-decoration: underline;
 }
+
+/* ============================================================
+   BLUESTARHUB — CHECKOUT FLOW CSS
+   Covers: Cart, Checkout, Order Confirmation, My Account
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. SHARED PAGE BACKGROUNDS & WRAPPERS
+   ------------------------------------------------------------ */
+
+/* Light background applied to all WooCommerce pages */
+.woocommerce-cart .woocommerce,
+.woocommerce-checkout .woocommerce,
+.woocommerce-order-received .woocommerce,
+.woocommerce-account .woocommerce {
+  background-color: #f0f4f8;
+}
+
+/* Centered content wrapper — add CSS class "bsh-cart-wrap",
+   "bsh-checkout-wrap", "bsh-order-wrap", "bsh-account-wrap"
+   to each template's main content Group via Advanced panel */
+.bsh-cart-wrap,
+.bsh-checkout-wrap,
+.bsh-order-wrap,
+.bsh-account-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 48px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1023px) {
+  .bsh-cart-wrap,
+  .bsh-checkout-wrap,
+  .bsh-order-wrap,
+  .bsh-account-wrap {
+    padding: 40px 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bsh-cart-wrap,
+  .bsh-checkout-wrap,
+  .bsh-order-wrap,
+  .bsh-account-wrap {
+    padding: 32px 20px;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   2. CART PAGE
+   ------------------------------------------------------------ */
+
+/* Cart table header row */
+.woocommerce table.cart thead th {
+  background-color: #0d1b3e;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+/* Cart table rows */
+.woocommerce table.cart tbody td {
+  padding: 16px;
+  border-bottom: 1px solid #dde5ef;
+  font-size: 15px;
+  color: #2d3748;
+  vertical-align: middle;
+}
+
+/* Product name link — remove default blue */
+.woocommerce table.cart .product-name a {
+  color: #0d1b3e;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.woocommerce table.cart .product-name a:hover {
+  color: #1a3a6b;
+  text-decoration: underline;
+}
+
+/* Product meta (Color, Size, etc.) */
+.woocommerce table.cart .product-name .variation dd,
+.woocommerce table.cart .product-name .variation dt {
+  font-size: 13px;
+  color: #4a5568;
+  margin: 0;
+}
+
+/* Quantity input in cart */
+.woocommerce table.cart .qty {
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 15px;
+  color: #0d1b3e;
+  width: 64px;
+  text-align: center;
+}
+
+.woocommerce table.cart .qty:focus {
+  border-color: #0d1b3e;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.35);
+  outline: none;
+}
+
+/* Remove item icon */
+.woocommerce table.cart a.remove {
+  color: #9ab0c8 !important;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.woocommerce table.cart a.remove:hover {
+  color: #c0392b !important;
+  background: none !important;
+}
+
+/* Cart totals box */
+.woocommerce .cart_totals h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d1b3e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.woocommerce .cart_totals table th,
+.woocommerce .cart_totals table td {
+  font-size: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #dde5ef;
+  color: #4a5568;
+}
+
+/* Cart total final row */
+.woocommerce .cart_totals table tr.order-total td,
+.woocommerce .cart_totals table tr.order-total th {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d1b3e;
+  border-bottom: none;
+}
+
+/* Coupon input */
+.woocommerce #coupon_code {
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: #0d1b3e;
+  background: #ffffff;
+}
+
+.woocommerce #coupon_code:focus {
+  border-color: #0d1b3e;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.35);
+  outline: none;
+}
+
+/* Proceed to Checkout button */
+.woocommerce .wc-proceed-to-checkout .checkout-button {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  border-radius: 4px !important;
+  padding: 14px 32px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  width: 100% !important;
+  text-align: center;
+  transition: background-color 0.25s ease;
+  display: block;
+}
+
+.woocommerce .wc-proceed-to-checkout .checkout-button:hover {
+  background-color: #1a3a6b !important;
+}
+
+.woocommerce .wc-proceed-to-checkout .checkout-button:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+/* "You may be interested in" cross-sell heading */
+.woocommerce .cross-sells h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0d1b3e;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Cross-sell product grid — 3 columns */
+.woocommerce .cross-sells ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+}
+
+.woocommerce .cross-sells ul.products li.product img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+  /* Distinct shadow matching product grid standard */
+  box-shadow:
+    0 4px 10px rgba(13, 27, 62, 0.30),
+    0 12px 32px rgba(13, 27, 62, 0.18);
+}
+
+@media (max-width: 767px) {
+  .woocommerce .cross-sells ul.products {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   3. CHECKOUT PAGE
+   ------------------------------------------------------------ */
+
+/* Page background */
+.woocommerce-checkout {
+  background-color: #f0f4f8;
+}
+
+/* Section headings (Contact information, Shipping address, etc.) */
+.woocommerce-checkout h3#order_review_heading,
+.woocommerce-checkout .woocommerce-billing-fields h3,
+.woocommerce-checkout .woocommerce-shipping-fields h3,
+.wp-block-woocommerce-checkout-fields-block h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d1b3e;
+  margin-bottom: 16px;
+}
+
+/* All form inputs */
+.woocommerce-checkout input[type="text"],
+.woocommerce-checkout input[type="email"],
+.woocommerce-checkout input[type="tel"],
+.woocommerce-checkout input[type="password"],
+.woocommerce-checkout select,
+.woocommerce-checkout textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #c9d6e3;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #1a202c;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 4px;
+}
+
+/* Focus state — WAVE/WCAG keyboard accessible */
+.woocommerce-checkout input:focus,
+.woocommerce-checkout select:focus,
+.woocommerce-checkout textarea:focus {
+  border-color: #0d1b3e;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.35);
+  outline: none;
+}
+
+/* Checkbox styling */
+.woocommerce-checkout input[type="checkbox"] {
+  accent-color: #0d1b3e;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Checkbox labels */
+.woocommerce-checkout label {
+  font-size: 15px;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+/* "Or continue below" divider */
+.woocommerce-checkout .wc-block-components-express-payment__title-container::after,
+.wp-block-woocommerce-checkout-express-payment-block + p {
+  font-size: 14px;
+  color: #9ab0c8;
+  text-align: center;
+  position: relative;
+}
+
+/* Order summary sidebar card */
+.woocommerce-checkout #order_review,
+.wp-block-woocommerce-checkout-order-summary-block {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(13, 27, 62, 0.07);
+}
+
+/* Order summary product names */
+.woocommerce-checkout table.shop_table .product-name {
+  font-size: 15px;
+  color: #0d1b3e;
+  font-weight: 600;
+}
+
+/* Order summary totals */
+.woocommerce-checkout table.shop_table tfoot tr th {
+  font-size: 15px;
+  color: #4a5568;
+}
+
+.woocommerce-checkout table.shop_table tfoot tr.order-total td {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d1b3e;
+}
+
+/* "Return to Cart" link */
+.woocommerce-checkout .wc-block-components-checkout-return-to-cart-button,
+.woocommerce-checkout a.woocommerce-button.wp-element-button.return-to-cart {
+  color: #0d1b3e;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.woocommerce-checkout a.return-to-cart:hover {
+  text-decoration: underline;
+}
+
+/* "Place Order" button */
+.woocommerce-checkout #place_order,
+.woocommerce-checkout .wc-block-components-checkout-place-order-button {
+  background-color: #0d1b3e !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 16px 40px !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  width: 100% !important;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  letter-spacing: 0.4px;
+}
+
+.woocommerce-checkout #place_order:hover,
+.woocommerce-checkout .wc-block-components-checkout-place-order-button:hover {
+  background-color: #1a3a6b !important;
+}
+
+.woocommerce-checkout #place_order:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+/* Terms and conditions / Privacy links */
+.woocommerce-checkout .woocommerce-privacy-policy-text a,
+.woocommerce-checkout .woocommerce-terms-and-conditions-link {
+  color: #0d1b3e;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+/* Mobile — stack checkout form and sidebar */
+@media (max-width: 767px) {
+  .woocommerce-checkout #customer_details,
+  .woocommerce-checkout #order_review {
+    float: none !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   4. ORDER CONFIRMATION PAGE
+   ------------------------------------------------------------ */
+
+/* "Order received" heading */
+.woocommerce-order .woocommerce-order-received h2,
+.woocommerce-thankyou-order-received {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d1b3e;
+  margin-bottom: 8px;
+}
+
+/* Thank-you paragraph */
+.woocommerce-order p.lead {
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* Order details summary row (number, date, total, email, payment) */
+.woocommerce-order ul.woocommerce-order-overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style: none;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dde5ef;
+  margin: 24px 0 32px;
+}
+
+.woocommerce-order ul.woocommerce-order-overview li {
+  font-size: 12px;
+  color: #9ab0c8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+
+.woocommerce-order ul.woocommerce-order-overview li strong {
+  display: block;
+  font-size: 15px;
+  color: #0d1b3e;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-top: 4px;
+}
+
+/* Create account section */
+.woocommerce-order .woocommerce-customer-details--account {
+  background: #ffffff;
+  border-left: 4px solid #0d1b3e;
+  border-radius: 0 6px 6px 0;
+  padding: 24px 32px;
+  box-shadow: 0 2px 10px rgba(13, 27, 62, 0.07);
+  margin-bottom: 32px;
+}
+
+/* Section headings within confirmation */
+.woocommerce-order h2.woocommerce-column__title,
+.woocommerce-order h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d1b3e;
+  margin-bottom: 16px;
+}
+
+/* Order details & downloads table header */
+.woocommerce-order table.woocommerce-table thead th {
+  background-color: #0d1b3e;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 16px;
+}
+
+/* Table rows alternating */
+.woocommerce-order table.woocommerce-table tbody tr:nth-child(odd) td {
+  background-color: #ffffff;
+}
+
+.woocommerce-order table.woocommerce-table tbody tr:nth-child(even) td {
+  background-color: #f7f9fc;
+}
+
+.woocommerce-order table.woocommerce-table tbody td {
+  font-size: 15px;
+  color: #2d3748;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dde5ef;
+}
+
+/* Product links in confirmation table */
+.woocommerce-order table.woocommerce-table td a {
+  color: #0d1b3e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.woocommerce-order table.woocommerce-table td a:hover {
+  text-decoration: underline;
+}
+
+/* Shipping/Billing address card boxes */
+.woocommerce-order .woocommerce-customer-details address,
+.woocommerce-order .col-1,
+.woocommerce-order .col-2 {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 24px;
+  border: 1px solid #dde5ef;
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+/* Address box heading */
+.woocommerce-order .woocommerce-column__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0d1b3e;
+  margin-bottom: 12px;
+}
+
+/* Additional information box */
+.woocommerce-order .woocommerce-order-details__customer-note {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 20px 24px;
+  border: 1px solid #dde5ef;
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+
+/* ------------------------------------------------------------
+   5. MY ACCOUNT PAGE
+   ------------------------------------------------------------ */
+
+/* Sidebar navigation column */
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+/* Sidebar nav links */
+.woocommerce-account .woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul li a {
+  display: block;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0d1b3e;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul li a:hover {
+  background-color: #e8eef6;
+  color: #0d1b3e;
+}
+
+/* Active/current nav item */
+.woocommerce-account .woocommerce-MyAccount-navigation ul li.is-active a,
+.woocommerce-account .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--dashboard.is-active a {
+  background-color: #0d1b3e;
+  color: #ffffff;
+}
+
+/* Log out link — red to signal destructive action */
+.woocommerce-account .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a {
+  color: #c0392b;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a:hover {
+  background-color: #fdf2f2;
+  color: #96281b;
+}
+
+/* Account content area */
+.woocommerce-account .woocommerce-MyAccount-content {
+  flex: 1;
+  padding-left: 48px;
+}
+
+/* "Hello [Name]" greeting */
+.woocommerce-account .woocommerce-MyAccount-content p:first-child {
+  font-size: 18px;
+  color: #0d1b3e;
+  line-height: 1.5;
+}
+
+/* Dashboard paragraph text */
+.woocommerce-account .woocommerce-MyAccount-content p {
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+/* Inline account links (recent orders, shipping/billing) */
+.woocommerce-account .woocommerce-MyAccount-content a {
+  color: #0d1b3e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content a:hover {
+  text-decoration: underline;
+}
+
+/* Two-column row layout for nav + content */
+.woocommerce-account .woocommerce {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* Mobile — stack nav above content */
+@media (max-width: 767px) {
+  .woocommerce-account .woocommerce {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .woocommerce-account .woocommerce-MyAccount-navigation {
+    width: 100%;
+  }
+
+  .woocommerce-account .woocommerce-MyAccount-content {
+    padding-left: 0;
+  }
+}
