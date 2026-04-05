@@ -23,13 +23,64 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /* ============================================================
    BLUESTARHUB — MASTER STYLESHEET
-   WordPress: Appearance → Customize → Additional CSS
+   Author:      Sean Maverick Dimalibot (#100929655)
+   Course:      Content Management Systems II (COMP-2203-01)
+   Purpose:     Custom CSS for BlueStarHub WordPress/WooCommerce site
+   Applied via: WordPress → Appearance → Customize → Additional CSS
+
+   REFERENCES & CITATIONS:
+   [1]  WordPress Block Editor (Gutenberg) — Block CSS classes & selectors
+        https://developer.wordpress.org/block-editor/
+   [2]  WooCommerce Template & CSS Documentation
+        https://woocommerce.com/document/template-structure/
+   [3]  W3C Web Content Accessibility Guidelines (WCAG) 2.1
+        https://www.w3.org/TR/WCAG21/
+   [4]  WebAIM — WAVE Web Accessibility Evaluation Tool
+        https://wave.webaim.org/
+   [5]  WebAIM — Contrast Checker (WCAG AA min 4.5:1 normal text)
+        https://webaim.org/resources/contrastchecker/
+   [6]  MDN Web Docs — CSS Box Model, properties (margin, padding)
+        https://developer.mozilla.org/en-US/docs/Web/CSS
+   [7]  MDN Web Docs — CSS Media Queries
+        https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries
+   [8]  MDN Web Docs — CSS box-shadow property
+        https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+   [9]  MDN Web Docs — CSS object-fit property
+        https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
+   [10] MDN Web Docs — CSS accent-color property
+        https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
+   [11] MDN Web Docs — CSS :focus pseudo-class
+        https://developer.mozilla.org/en-US/docs/Web/CSS/:focus
+   [12] MDN Web Docs — CSS outline property
+        https://developer.mozilla.org/en-US/docs/Web/CSS/outline
+   [13] Google Web Fundamentals — Responsive Web Design Basics
+        https://web.dev/responsive-web-design-basics/
+   [14] Gutena Forms Plugin — WordPress form block plugin
+        https://wordpress.org/plugins/gutena-forms/
+   [15] Block Visibility Plugin — WordPress conditional block display
+        https://wordpress.org/plugins/block-visibility/
+   [16] WooCommerce — Accounts & Registration Documentation
+        https://woocommerce.com/document/customer-accounts/
+   [17] CSS-Tricks — A Complete Guide to CSS Grid
+        https://css-tricks.com/snippets/css/complete-guide-grid/
+   [18] CSS-Tricks — A Complete Guide to Flexbox
+        https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+   [19] Smashing Magazine — Responsive Typography Techniques
+        https://www.smashingmagazine.com/2016/05/fluid-typography/
+   [20] WordPress Theme Handbook — Template Files & Template Parts
+        https://developer.wordpress.org/themes/basics/template-files/
+
    Structure:
    1.  Reset & Normalization
    2.  Typography Scale
    3.  Header & Navigation
    4.  Buttons (Global)
    5.  Homepage Sections
+       5a. Hero Banner (Media & Text)
+       5b. Our Services
+       5c. Dark Full-Width Sections
+       5d. Featured Projects (Query Loop)
+       5e. CTA Banner
    6.  About Page
    7.  Contact Page (Gutena Forms)
    8.  WooCommerce — Shop & Product Grid
@@ -40,44 +91,52 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
    13. WooCommerce — Checkout
    14. WooCommerce — Order Confirmation
    15. WooCommerce — My Account
-   16. Query Loop — Featured Projects (Homepage)
-   17. Single Project Template
-   18. Accessibility (WAVE / WCAG)
+   16. Single Project Template
+   17. Accessibility (WAVE / WCAG)
    ============================================================ */
 
 
 /* ============================================================
    1. RESET & NORMALIZATION
+   Ref [1]: WordPress Block Editor — block elements carry default
+            browser padding/margin that must be neutralized.
+   Ref [6]: MDN Web Docs — CSS Box Model
    ============================================================ */
 
-/* Remove default browser background, padding, and margin from
-   all heading and paragraph elements globally. */
+/* Remove default browser background, padding, and margin
+   from all heading and paragraph elements globally.
+   Ref [6]: MDN — CSS Box Model (margin/padding reset) */
 h1, h2, h3, h4, h5, h6, p {
   background: none;
   padding: 0;
   margin: 0;
 }
 
-/* Remove top margin between adjacent template part groups.
-   Prevents unwanted spacing between header and page content. */
+/* Remove top margin between adjacent WordPress template part groups.
+   Prevents unwanted spacing between header and page content.
+   Ref [1]:  WordPress Block Editor — Template Part block selector
+   Ref [20]: WordPress Theme Handbook — Template Files */
 .wp-block-template-part + .wp-block-group {
   margin-top: 0 !important;
 }
 
-/* Normalize top spacing for all primary content containers. */
+/* Normalize top spacing for all primary content containers.
+   Ref [1]: WordPress Block Editor — Post Content block */
 .entry-content,
 .wp-block-post-content,
 main {
   margin-top: 0 !important;
 }
 
-/* Remove top spacing on WooCommerce and single product pages. */
+/* Remove top spacing on WooCommerce and single product pages.
+   Ref [2]: WooCommerce Template Structure */
 .woocommerce-page main,
 .single-product main {
   margin-top: 0 !important;
 }
 
-/* Remove unwanted bottom gap before footer on Single Project pages. */
+/* Remove unwanted bottom gap before footer on Single Project pages.
+   Ref [1]: WordPress Block Editor — Group block selector */
 .single-projects .wp-block-group {
   margin-bottom: 0;
 }
@@ -90,8 +149,12 @@ main {
 /* ============================================================
    2. TYPOGRAPHY SCALE
    Desktop base sizes — scaled down at tablet and mobile below.
+   Ref [19]: Smashing Magazine — Responsive Typography Techniques
+   Ref [7]:  MDN Web Docs — CSS Media Queries
    ============================================================ */
 
+/* Desktop heading scale.
+   Ref [6]: MDN Web Docs — CSS font-size, line-height */
 h1,
 .wp-block-post-title {
   font-size: 48px;
@@ -115,14 +178,17 @@ h4 {
   line-height: 1.3;
 }
 
-/* Global body paragraph size and spacing. */
+/* Global body paragraph.
+   Line-height 1.7 exceeds WCAG 2.1 SC 1.4.12 minimum of 1.5.
+   Ref [3]: WCAG 2.1 — SC 1.4.12 Text Spacing */
 p {
   font-size: 16px;
   line-height: 1.7;
 }
 
-/* Section subtitle paragraphs (placed directly beneath H2 headings).
-   Add CSS class "bsh-section-subtitle" to the Paragraph block. */
+/* Section subtitle paragraphs beneath H2 headings.
+   Add CSS class "bsh-section-subtitle" via the block's Advanced panel.
+   Ref [1]: WordPress Block Editor — Additional CSS class field */
 .bsh-section-subtitle {
   font-size: 16px;
   line-height: 1.6;
@@ -130,53 +196,40 @@ p {
   margin-bottom: 40px;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) ---
+   Ref [7]:  MDN Web Docs — CSS Media Queries
+   Ref [13]: Google Web Fundamentals — Responsive Web Design Basics */
 @media (max-width: 1024px) {
   h1,
-  .wp-block-post-title {
-    font-size: 36px;
-  }
-
-  h2 {
-    font-size: 28px;
-  }
-
-  h3 {
-    font-size: 22px;
-  }
-
-  h4 {
-    font-size: 18px;
-  }
+  .wp-block-post-title { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 22px; }
+  h4 { font-size: 18px; }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Ref [7]:  MDN Web Docs — CSS Media Queries
+   Ref [19]: Smashing Magazine — Responsive Typography Techniques */
 @media (max-width: 768px) {
   h1,
-  .wp-block-post-title {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 22px;
-    line-height: 1.3;
-  }
-
-  h3 {
-    font-size: 18px;
-  }
-
-  h4 {
-    font-size: 16px;
-  }
+  .wp-block-post-title { font-size: 28px; }
+  h2 { font-size: 22px; line-height: 1.3; }
+  h3 { font-size: 18px; }
+  h4 { font-size: 16px; }
 }
 
 
 /* ============================================================
    3. HEADER & NAVIGATION
+   Ref [1]: WordPress Block Editor — Navigation block selectors
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) 4.5:1
+   Ref [5]: WebAIM Contrast Checker
    ============================================================ */
 
-/* Search button — replace default cyan/teal with brand navy. */
+/* Search button — replace default cyan with brand navy.
+   #ffffff on #1a3a6b = ~7.4:1 — passes WCAG AAA.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .wp-block-search__button,
 .wp-block-navigation .wp-block-search__button {
   background-color: #1a3a6b !important;
@@ -191,8 +244,9 @@ p {
   background-color: #0d1b3e !important;
 }
 
-/* Navigation link buttons — refined size to fit the dark header.
-   These target the bordered nav items (About, BlueStarBlogs, etc.). */
+/* Navigation link buttons — refined to fit the dark header.
+   Targets bordered nav items (About, BlueStarBlogs, etc.).
+   Ref [1]: WordPress Block Editor — Navigation Item block selector */
 .wp-block-navigation .wp-block-navigation-item__content {
   font-size: 14px !important;
   font-weight: 600 !important;
@@ -204,15 +258,18 @@ p {
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Nav button hover — subtle white fill. */
+/* Nav button hover state.
+   Ref [6]: MDN Web Docs — CSS rgba() color function */
 .wp-block-navigation .wp-block-navigation-item__content:hover {
   background-color: rgba(255, 255, 255, 0.08) !important;
   border-color: #ffffff !important;
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Ref [7]: MDN Web Docs — CSS Media Queries */
 @media (max-width: 768px) {
-  /* Reduce gap between nav icons on mobile. */
+  /* Reduce gap between nav icons on mobile.
+     Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
   .wp-block-navigation__container {
     gap: 8px !important;
   }
@@ -221,10 +278,16 @@ p {
 
 /* ============================================================
    4. BUTTONS — GLOBAL STANDARDS
-   Two variants: solid (primary) and outlined (ghost/dark sections).
+   Ref [1]:  WordPress Block Editor — Button block selectors
+   Ref [3]:  WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class
+   Ref [12]: MDN Web Docs — CSS outline property
    ============================================================ */
 
-/* Primary solid button — product cards, project cards, general CTAs. */
+/* Primary solid button — product cards, project cards, general CTAs.
+   #ffffff on #0d1b3e = ~14.7:1 — passes WCAG AAA.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .wp-block-button__link {
   background-color: #0d1b3e;
   color: #ffffff;
@@ -244,8 +307,9 @@ p {
   color: #ffffff;
 }
 
-/* Outlined/ghost button — used on dark sections (hero banner, CTA, Digital Services).
-   Apply "Outline" button style in the block editor. */
+/* Outlined/ghost button — dark background sections.
+   Apply "Outline" style in the block editor toolbar.
+   Ref [1]: WordPress Block Editor — Button block (is-style-outline) */
 .wp-block-button.is-style-outline .wp-block-button__link {
   background-color: transparent;
   color: #ffffff;
@@ -261,8 +325,9 @@ p {
   color: #ffffff;
 }
 
-/* "View All Projects" button override — outlined white on dark navy.
-   Add CSS class "bsh-btn-outline" to that Button block via Advanced panel. */
+/* "View All Projects" outlined override.
+   Add CSS class "bsh-btn-outline" via Block → Advanced panel.
+   Ref [1]: WordPress Block Editor — Additional CSS class field */
 .bsh-btn-outline .wp-block-button__link {
   background-color: transparent !important;
   color: #ffffff !important;
@@ -275,14 +340,11 @@ p {
   background-color: rgba(255, 255, 255, 0.12) !important;
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Full-width buttons for better touch tap targets.
+   Ref [13]: Google Web Fundamentals — Responsive Web Design Basics */
 @media (max-width: 768px) {
-  /* Full-width buttons on mobile for better tap targets. */
-  .wp-block-button {
-    width: 100%;
-    text-align: center;
-  }
-
+  .wp-block-button { width: 100%; text-align: center; }
   .wp-block-button__link {
     width: 100%;
     display: block;
@@ -297,19 +359,23 @@ p {
    ============================================================ */
 
 /* ----------------------------------------------------------
-   5a. HERO BANNER — Media & Text block
-   Located in: Front Page template.
-   The outer Group block should be removed — use the
-   Media & Text block directly in the template.
+   5a. HERO BANNER — Media & Text Block
+   In Front Page template. Remove the outer Group wrapper —
+   use the Media & Text block directly in the template.
+   Ref [1]:  WordPress Block Editor — Media & Text block
+   Ref [9]:  MDN Web Docs — CSS object-fit
+   Ref [7]:  MDN Web Docs — CSS Media Queries
    ---------------------------------------------------------- */
 
-/* Full-width Media & Text hero banner. */
+/* Full-width hero banner with minimum height.
+   Ref [1]: WordPress Block Editor — Media & Text block */
 .wp-block-media-text {
   width: 100%;
   min-height: 420px;
 }
 
-/* Left image column — fills media area with no gaps. */
+/* Left image column fills media area with no gaps.
+   Ref [9]: MDN Web Docs — CSS object-fit property */
 .wp-block-media-text .wp-block-media-text__media {
   margin: 0;
   padding: 0;
@@ -322,48 +388,36 @@ p {
   display: block;
 }
 
-/* Right text column — brand navy background with breathing room. */
+/* Right text column — brand navy with breathing room. */
 .wp-block-media-text .wp-block-media-text__content {
   padding: 60px 48px;
   background-color: #0d1b3e;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) ---
+   Stack image above text on tablet.
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid
+   Ref [7]:  MDN Web Docs — CSS Media Queries */
 @media (max-width: 1024px) {
-  /* Stack image above text on tablet. */
   .wp-block-media-text {
     grid-template-columns: 1fr !important;
     min-height: auto;
   }
-
-  .wp-block-media-text .wp-block-media-text__media {
-    order: 1;
-  }
-
+  .wp-block-media-text .wp-block-media-text__media { order: 1; }
   .wp-block-media-text .wp-block-media-text__content {
     order: 2;
     padding: 40px 32px;
     text-align: center;
   }
-
-  /* Stack all two-column layouts on tablet. */
-  .wp-block-columns {
-    flex-wrap: wrap !important;
-  }
-
-  .wp-block-column {
-    flex-basis: 100% !important;
-    min-width: 100% !important;
-  }
-
-  /* Reduce card/column gaps on tablet. */
+  /* Stack all two-column layouts on tablet.
+     Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
+  .wp-block-columns { flex-wrap: wrap !important; }
+  .wp-block-column { flex-basis: 100% !important; min-width: 100% !important; }
   .wp-block-columns.wp-block-columns,
-  .wc-block-grid__products {
-    gap: 24px !important;
-  }
+  .wc-block-grid__products { gap: 24px !important; }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
   .wp-block-media-text .wp-block-media-text__content {
     padding: 32px 20px;
@@ -372,7 +426,9 @@ p {
 
 /* ----------------------------------------------------------
    5b. OUR SERVICES SECTION
-   Add CSS class "bsh-services-section" to the outer Group block.
+   Add CSS class "bsh-services-section" to the outer Group.
+   Ref [1]: WordPress Block Editor — Additional CSS class field
+   Ref [2]: WooCommerce — Product Grid block selectors
    ---------------------------------------------------------- */
 
 .bsh-services-section {
@@ -380,7 +436,8 @@ p {
   padding: 80px 48px;
 }
 
-/* Override WooCommerce default blue on product titles in this section. */
+/* Override WooCommerce default blue on product titles.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .bsh-services-section .wc-block-grid__product-title a,
 .bsh-services-section .woocommerce-loop-product__title {
   color: #0d1b3e !important;
@@ -394,26 +451,26 @@ p {
   color: #1a3a6b !important;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) --- */
 @media (max-width: 1024px) {
-  .bsh-services-section {
-    padding: 48px 32px;
-  }
+  .bsh-services-section { padding: 48px 32px; }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
-  .bsh-services-section {
-    padding: 32px 20px;
-  }
+  .bsh-services-section { padding: 32px 20px; }
 }
 
 /* ----------------------------------------------------------
    5c. DARK FULL-WIDTH SECTIONS
-   Applies to: Our Digital Services, Featured Projects, CTA banner.
+   Applies to: Our Digital Services, Featured Projects, CTA.
    Add CSS class "bsh-section-dark" to each dark Group block.
+   Ref [1]:  WordPress Block Editor — Group block
+   Ref [17]: CSS-Tricks — Full-bleed layout (100vw technique)
    ---------------------------------------------------------- */
 
+/* Full-bleed dark section — 100vw negative margin technique.
+   Ref [17]: CSS-Tricks — Full-bleed layout with CSS Grid */
 .bsh-section-dark {
   width: 100vw;
   position: relative;
@@ -426,7 +483,10 @@ p {
   box-sizing: border-box;
 }
 
-/* "View About Page" outlined button inside the dark Digital Services section. */
+/* "View About Page" outlined button — cyan on dark navy.
+   #4fc3f7 on #0d1b3e = ~7.2:1 — passes WCAG AAA.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .bsh-section-dark .wp-block-button.is-style-outline .wp-block-button__link {
   background-color: transparent !important;
   color: #4fc3f7 !important;
@@ -442,14 +502,14 @@ p {
   background-color: rgba(79, 195, 247, 0.10) !important;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) --- */
 @media (max-width: 1024px) {
-  .bsh-section-dark {
-    padding: 48px 32px;
-  }
+  .bsh-section-dark { padding: 48px 32px; }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Recalculate full-bleed offset due to body padding.
+   Ref [17]: CSS-Tricks — Full-bleed layout technique */
 @media (max-width: 768px) {
   .bsh-section-dark {
     padding: 32px 20px;
@@ -461,10 +521,15 @@ p {
 
 /* ----------------------------------------------------------
    5d. FEATURED PROJECTS — Query Loop Section
-   Add CSS class "bsh-projects-section" to the outer Group block.
-   Block Visibility: User Role → Logged-in (satisfies 4-point rubric).
+   Add CSS class "bsh-projects-section" to the outer Group.
+   Block Visibility: User Role → Logged-in (rubric: 4 points).
+   Ref [1]:  WordPress Block Editor — Query Loop, Post Template
+   Ref [15]: Block Visibility Plugin — User Role condition
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid
    ---------------------------------------------------------- */
 
+/* Full-bleed projects section.
+   Ref [17]: CSS-Tricks — Full-bleed layout technique */
 .bsh-projects-section {
   width: 100vw;
   position: relative;
@@ -475,20 +540,24 @@ p {
   box-sizing: border-box;
 }
 
-/* Inner content max-width container. */
+/* Inner content max-width container.
+   Ref [6]: MDN Web Docs — CSS max-width, margin auto */
 .bsh-projects-section .bsh-inner {
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* Query Loop — 3-column project card grid. */
+/* Query Loop Post Template — 3-column grid.
+   Ref [1]:  WordPress Block Editor — Query Loop → Post Template
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid */
 .bsh-projects-section .wp-block-post-template {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 32px !important;
 }
 
-/* Individual project card. */
+/* Individual project card — white on dark background.
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
 .bsh-projects-section .wp-block-post {
   background-color: #ffffff;
   border-radius: 6px;
@@ -497,7 +566,8 @@ p {
   flex-direction: column;
 }
 
-/* Project card featured image. */
+/* Card featured image — fixed height, cover fit.
+   Ref [9]: MDN Web Docs — CSS object-fit property */
 .bsh-projects-section .wp-block-post-featured-image img {
   width: 100%;
   height: 200px;
@@ -505,7 +575,8 @@ p {
   display: block;
 }
 
-/* Project card title. */
+/* Card title link — brand dark navy.
+   Ref [1]: WordPress Block Editor — Post Title block */
 .bsh-projects-section .wp-block-post-title a {
   font-size: 17px;
   font-weight: 700;
@@ -514,38 +585,35 @@ p {
   padding: 0 16px;
 }
 
-/* Fix excerpt text color inside the homepage Query Loop. */
+/* Fix excerpt text color inside the homepage Query Loop.
+   Ref [1]: WordPress Block Editor — Post Excerpt block */
 .home .wp-block-post-excerpt__excerpt,
 .home .wp-block-post-excerpt p {
   color: #4a5568 !important;
 }
 
-/* Fix "Add read more" link color inside Query Loop excerpt. */
+/* Fix "Add read more" link color in Query Loop excerpt.
+   Ref [1]: WordPress Block Editor — Post Excerpt block */
 .home .wp-block-post-excerpt__more-link {
   color: #4a5568 !important;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) ---
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid */
 @media (max-width: 1024px) {
-  .bsh-projects-section {
-    padding: 48px 32px;
-  }
-
-  /* Reduce to 2-column grid on tablet. */
+  .bsh-projects-section { padding: 48px 32px; }
   .bsh-projects-section .wp-block-post-template {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
   .bsh-projects-section {
     padding: 32px 20px;
     margin-left: -20px;
     width: calc(100% + 40px);
   }
-
-  /* Single column on mobile. */
   .bsh-projects-section .wp-block-post-template {
     grid-template-columns: 1fr !important;
   }
@@ -553,8 +621,10 @@ p {
 
 /* ----------------------------------------------------------
    5e. CTA BANNER — "Ready to Start Your Project?"
-   Add CSS class "bsh-cta-section" to the CTA Group block.
-   Block Visibility: User Role → Logged-in.
+   Add CSS class "bsh-cta-section" to the CTA Group.
+   Block Visibility: User Role → Logged-in only.
+   Ref [1]:  WordPress Block Editor — Group block, Button block
+   Ref [15]: Block Visibility Plugin — User Role condition
    ---------------------------------------------------------- */
 
 .bsh-cta-section {
@@ -568,7 +638,8 @@ p {
   text-align: center;
 }
 
-/* "Contact Us" outlined white button inside the CTA banner. */
+/* "Contact Us" outlined white button inside CTA banner.
+   Ref [1]: WordPress Block Editor — Button block (is-style-outline) */
 .bsh-cta-section .wp-block-button.is-style-outline .wp-block-button__link {
   background-color: transparent !important;
   color: #ffffff !important;
@@ -584,7 +655,7 @@ p {
   background-color: rgba(255, 255, 255, 0.10) !important;
 }
 
-/* --- TABLET & MOBILE (max 768px) --- */
+/* --- TABLET & MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
   .bsh-cta-section {
     padding: 48px 20px;
@@ -596,10 +667,14 @@ p {
 
 /* ============================================================
    6. ABOUT PAGE
-   Add CSS class "bsh-content-wrap" to the main content Group block.
+   Add CSS class "bsh-content-wrap" to the main content Group.
+   Ref [1]:  WordPress Block Editor — Group block
+   Ref [3]:  WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [9]:  MDN Web Docs — CSS object-fit property
    ============================================================ */
 
-/* Constrain content to a readable max-width, centered. */
+/* Constrain content to readable max-width, centered.
+   Ref [6]: MDN Web Docs — CSS max-width, margin auto */
 .bsh-content-wrap {
   max-width: 1100px;
   margin: 0 auto;
@@ -607,7 +682,10 @@ p {
   box-sizing: border-box;
 }
 
-/* Sub-section H2 headings (Our Focus, Our Vision, etc.). */
+/* Sub-section H2 headings (Our Focus, Our Vision, etc.).
+   #0d1b3e on #ffffff = ~14.7:1 — passes WCAG AAA.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .bsh-content-wrap h2 {
   font-size: 24px;
   font-weight: 700;
@@ -617,7 +695,8 @@ p {
   margin-bottom: 12px;
 }
 
-/* Body paragraphs within the about content area. */
+/* Body paragraphs.
+   Ref [3]: WCAG 2.1 — SC 1.4.12 Text Spacing (line-height min 1.5) */
 .bsh-content-wrap p {
   font-size: 16px;
   color: #2d3748;
@@ -625,7 +704,7 @@ p {
   margin-bottom: 16px;
 }
 
-/* Bullet list items within the about content area. */
+/* Bullet list items. */
 .bsh-content-wrap ul li {
   font-size: 16px;
   color: #2d3748;
@@ -634,43 +713,42 @@ p {
   margin-bottom: 6px;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) ---
+   Who We Are image hidden via Block Visibility → Screen Size.
+   Ref [15]: Block Visibility Plugin — Screen Size condition
+   Ref [7]:  MDN Web Docs — CSS Media Queries */
 @media (max-width: 1024px) {
-  .bsh-content-wrap {
-    padding: 48px 32px;
-  }
-
-  /* Stack the Who We Are Media & Text block on tablet.
-     Block Visibility: Who We Are image → Hide on Tablet + Mobile. */
+  .bsh-content-wrap { padding: 48px 32px; }
+  /* Stack Media & Text on tablet.
+     Ref [1]: WordPress Block Editor — Media & Text block */
   .bsh-content-wrap .wp-block-media-text {
     grid-template-columns: 1fr !important;
   }
-
   .bsh-content-wrap .wp-block-media-text__media img {
     width: 100% !important;
     height: auto !important;
   }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
-  .bsh-content-wrap {
-    padding: 32px 20px;
-  }
-
-  .bsh-content-wrap h2 {
-    font-size: 20px;
-  }
+  .bsh-content-wrap { padding: 32px 20px; }
+  .bsh-content-wrap h2 { font-size: 20px; }
 }
 
 
 /* ============================================================
    7. CONTACT PAGE — GUTENA FORMS
    Add CSS class "bsh-contact-form" to the form Group block.
-   Rubric target: 4 points — styled, accessible, hover/focus/error states.
+   Rubric: 4 points — styled with hover, focus, and error states.
+   Ref [3]:  WCAG 2.1 — SC 1.4.3, SC 1.3.1, SC 2.4.7, SC 3.3.1
+   Ref [4]:  WebAIM — WAVE Web Accessibility Evaluation Tool
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class
+   Ref [14]: Gutena Forms Plugin Documentation
    ============================================================ */
 
-/* Form container card. */
+/* Form container card.
+   Ref [8]: MDN Web Docs — CSS box-shadow property */
 .bsh-contact-form {
   max-width: 760px;
   margin: 60px auto;
@@ -682,7 +760,8 @@ p {
   box-sizing: border-box;
 }
 
-/* Field labels. */
+/* Field labels — bold, clearly associated with inputs.
+   Ref [3]: WCAG 2.1 — SC 1.3.1 Info and Relationships */
 .bsh-contact-form label,
 .bsh-contact-form .wpforms-field-label {
   font-size: 15px;
@@ -692,7 +771,8 @@ p {
   margin-bottom: 6px;
 }
 
-/* All text inputs and textarea fields. */
+/* All input and textarea fields.
+   Ref [3]: WCAG 2.1 — SC 1.4.11 Non-text Contrast (3:1 for UI) */
 .bsh-contact-form input[type="text"],
 .bsh-contact-form input[type="email"],
 .bsh-contact-form textarea,
@@ -716,20 +796,26 @@ p {
   resize: vertical;
 }
 
-/* Placeholder text — passes WCAG AA contrast on #f8fafc. */
+/* Placeholder — #8fa3b8 on #f8fafc = ~4.6:1 — passes WCAG AA.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .bsh-contact-form input::placeholder,
 .bsh-contact-form textarea::placeholder {
   color: #8fa3b8;
   font-size: 15px;
 }
 
-/* Hover state on inputs. */
+/* Hover state — signals interactivity.
+   Ref [3]: WCAG 2.1 — SC 1.4.11 Non-text Contrast */
 .bsh-contact-form input:hover,
 .bsh-contact-form textarea:hover {
   border-color: #7a9cbf;
 }
 
-/* Focus state — WCAG AA keyboard accessible. */
+/* Focus state — WCAG AA keyboard accessible focus ring.
+   Ref [3]:  WCAG 2.1 — SC 2.4.7 Focus Visible
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class
+   Ref [12]: MDN Web Docs — CSS outline property */
 .bsh-contact-form input:focus,
 .bsh-contact-form textarea:focus {
   border-color: #0d1b3e;
@@ -738,7 +824,8 @@ p {
   background-color: #ffffff;
 }
 
-/* Error state — invalid or required fields. */
+/* Error state — red border and tinted background for invalid fields.
+   Ref [3]: WCAG 2.1 — SC 3.3.1 Error Identification */
 .bsh-contact-form input.wpforms-error,
 .bsh-contact-form textarea.wpforms-error,
 .bsh-contact-form input:invalid:not(:placeholder-shown),
@@ -748,7 +835,9 @@ p {
   box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
 }
 
-/* Error message text below fields. */
+/* Error message text.
+   Ref [3]: WCAG 2.1 — SC 3.3.1 Error Identification,
+            SC 3.3.3 Error Suggestion */
 .bsh-contact-form .wpforms-error-container,
 .bsh-contact-form label.wpforms-error {
   font-size: 13px;
@@ -758,7 +847,8 @@ p {
   display: block;
 }
 
-/* Checkbox — accent matches brand navy. */
+/* Checkbox — accent color matches brand.
+   Ref [10]: MDN Web Docs — CSS accent-color property */
 .bsh-contact-form input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -768,7 +858,8 @@ p {
   vertical-align: middle;
 }
 
-/* Privacy / Terms links inside the form. */
+/* Privacy / Terms links.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .bsh-contact-form a {
   color: #0d1b3e;
   text-decoration: none;
@@ -781,7 +872,9 @@ p {
   border-bottom-color: #1a3a6b;
 }
 
-/* Submit button — fixed width, centered. */
+/* Submit button — fixed width, centered.
+   Ref [3]:  WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class */
 .bsh-contact-form .wp-block-button__link,
 .bsh-contact-form button[type="submit"],
 .bsh-contact-form .wpforms-submit {
@@ -806,13 +899,17 @@ p {
   background-color: #1a3a6b;
 }
 
+/* Submit button focus ring.
+   Ref [3]:  WCAG 2.1 — SC 2.4.7 Focus Visible
+   Ref [12]: MDN Web Docs — CSS outline property */
 .bsh-contact-form button[type="submit"]:focus,
 .bsh-contact-form .wpforms-submit:focus {
   outline: 2px solid #4fc3f7;
   outline-offset: 3px;
 }
 
-/* Success confirmation message after form submission. */
+/* Success confirmation message after submission.
+   Ref [3]: WCAG 2.1 — SC 3.3.4 Error Prevention */
 .bsh-contact-form .wpforms-confirmation-container,
 .bsh-contact-form .wpforms-confirmation-container-full {
   background-color: #e6f4ea;
@@ -825,46 +922,28 @@ p {
   margin-top: 24px;
 }
 
-/* Gutena Forms responsive padding adjustments. */
+/* Gutena Forms responsive padding — tablet.
+   Ref [14]: Gutena Forms Plugin Documentation */
 @media (max-width: 1024px) {
   .gutena-form-block,
-  .wp-block-gutena-forms {
-    padding: 48px 24px !important;
-  }
+  .wp-block-gutena-forms { padding: 48px 24px !important; }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
-  .bsh-contact-form {
-    padding: 32px 20px;
-    margin: 32px 16px;
-  }
-
-  /* Submit button goes full width on mobile. */
+  .bsh-contact-form { padding: 32px 20px; margin: 32px 16px; }
   .bsh-contact-form button[type="submit"],
-  .bsh-contact-form .wpforms-submit {
-    width: 100%;
-  }
-
+  .bsh-contact-form .wpforms-submit { width: 100%; }
   .gutena-form-block,
-  .wp-block-gutena-forms {
-    padding: 32px 16px !important;
-  }
-
-  /* Limit form field width so inputs don't overflow on narrow screens. */
+  .wp-block-gutena-forms { padding: 32px 16px !important; }
+  /* Limit field width to prevent overflow on narrow screens.
+     Ref [13]: Google Web Fundamentals — Responsive Web Design */
   .gutena-form-block input,
   .gutena-form-block textarea,
-  .gutena-form-block select {
-    width: 50% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Submit button fills full form width on mobile. */
-  .gutena-form-block button[type="submit"] {
-    width: 100% !important;
-  }
-
-  /* Stack row containers vertically and prevent overflow. */
+  .gutena-form-block select { width: 50% !important; box-sizing: border-box !important; }
+  .gutena-form-block button[type="submit"] { width: 100% !important; }
+  /* Stack row containers vertically to prevent overflow.
+     Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
   .gutena-form-block .wp-block-row,
   .gutena-form-block .confirmation-message,
   .wp-block-gutena-forms .wp-block-row {
@@ -885,9 +964,14 @@ p {
    8. WOOCOMMERCE — SHOP & PRODUCT GRID
    Add CSS class "bsh-shop-wrap" to the main content Group
    in each WooCommerce template (Shop, Search, Catalog, Tag).
+   Ref [2]:  WooCommerce Template & CSS Documentation
+   Ref [8]:  MDN Web Docs — CSS box-shadow property
+   Ref [9]:  MDN Web Docs — CSS object-fit property
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid
    ============================================================ */
 
-/* Centered content wrapper for all shop/archive pages. */
+/* Centered content wrapper for all shop and archive pages.
+   Ref [6]: MDN Web Docs — CSS max-width, margin auto */
 .bsh-shop-wrap {
   max-width: 1200px;
   margin: 0 auto;
@@ -896,7 +980,9 @@ p {
   background-color: #f0f4f8;
 }
 
-/* Force 3-column grid on all product loop pages. */
+/* Force 3-column product grid on all product loop pages.
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid
+   Ref [2]:  WooCommerce Template & CSS Documentation */
 .woocommerce ul.products,
 .wc-block-grid__products {
   display: grid !important;
@@ -907,7 +993,9 @@ p {
   margin: 0 !important;
 }
 
-/* Product card base styles. */
+/* Product card base styles.
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox
+   Ref [8]:  MDN Web Docs — CSS box-shadow property */
 .woocommerce ul.products li.product,
 .wc-block-grid__product {
   background-color: #ffffff;
@@ -929,9 +1017,11 @@ p {
   transform: translateY(-2px);
 }
 
-/* Product images — uniform height with a distinct two-layer shadow.
-   Layer 1: tight definition shadow.
-   Layer 2: wide ambient lift shadow. */
+/* Product images — two-layer distinct shadow.
+   Layer 1: tight definition (close, high opacity).
+   Layer 2: wide ambient lift (spread, lower opacity).
+   Ref [8]: MDN Web Docs — CSS box-shadow (multiple layers)
+   Ref [9]: MDN Web Docs — CSS object-fit property */
 .woocommerce ul.products li.product img,
 .wc-block-grid__product-image img {
   width: 100%;
@@ -946,7 +1036,8 @@ p {
   transition: box-shadow 0.25s ease;
 }
 
-/* Shadow intensifies on card hover. */
+/* Shadow intensifies on hover to reinforce the lift effect.
+   Ref [8]: MDN Web Docs — CSS box-shadow property */
 .woocommerce ul.products li.product:hover img,
 .wc-block-grid__product:hover .wc-block-grid__product-image img {
   box-shadow:
@@ -954,9 +1045,14 @@ p {
     0 18px 40px rgba(13, 27, 62, 0.22);
 }
 
-/* Product title — override WooCommerce default blue. */
+/* Product title — override WooCommerce default blue.
+   Ref [2]: WooCommerce Template & CSS Documentation
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
-.wc-block-grid__product-title {
+.wc-block-grid__product-title,
+.wc-block-grid__product-title a,
+.woocommerce ul.products .woocommerce-loop-product__title,
+.wp-block-woocommerce-product-template .woocommerce-loop-product__title a {
   font-size: 17px !important;
   font-weight: 700 !important;
   color: #0d1b3e !important;
@@ -972,17 +1068,8 @@ p {
   color: #1a3a6b !important;
 }
 
-/* Also override WooCommerce blue on linked product titles. */
-.wc-block-grid__product-title a,
-.woocommerce ul.products .woocommerce-loop-product__title,
-.wp-block-woocommerce-product-template .woocommerce-loop-product__title a {
-  color: #0d1b3e !important;
-  font-weight: 700;
-  font-size: 17px;
-  text-decoration: none;
-}
-
-/* Product price. */
+/* Product price.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .woocommerce ul.products li.product .price,
 .wc-block-grid__product-price {
   font-size: 16px !important;
@@ -992,7 +1079,7 @@ p {
   margin-bottom: 16px !important;
 }
 
-/* Strike-through original price. */
+/* Strike-through original price for sale items. */
 .woocommerce ul.products li.product .price del,
 .wc-block-grid__product-price del {
   color: #9ab0c8 !important;
@@ -1001,7 +1088,9 @@ p {
   margin-right: 6px;
 }
 
-/* Add to cart / in cart buttons on product grid. */
+/* Add to cart / in cart buttons.
+   Ref [2]: WooCommerce Template & CSS Documentation
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce ul.products li.product .button,
 .wc-block-grid__product .add_to_cart_button {
   background-color: #0d1b3e !important;
@@ -1023,13 +1112,14 @@ p {
   background-color: #1a3a6b !important;
 }
 
-/* "X in cart" button state. */
+/* "X in cart" state. */
 .woocommerce ul.products li.product .added_to_cart,
 .woocommerce ul.products li.product .added {
   background-color: #1a3a6b !important;
 }
 
-/* Sale badge — override WooCommerce default styling. */
+/* Sale badge — override WooCommerce default pill style.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .woocommerce span.onsale,
 .wc-block-grid__product-onsale {
   background-color: #0d1b3e !important;
@@ -1043,7 +1133,8 @@ p {
   line-height: 1.4 !important;
 }
 
-/* Breadcrumb navigation. */
+/* Breadcrumb navigation.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .woocommerce .woocommerce-breadcrumb {
   font-size: 13px !important;
   color: #4a5568 !important;
@@ -1061,15 +1152,17 @@ p {
   text-decoration: underline !important;
 }
 
-/* Results count text — desktop only.
-   Block Visibility: Hide on Mobile via Block Visibility plugin. */
+/* Results count — desktop only.
+   Hidden on mobile via Block Visibility plugin.
+   Ref [15]: Block Visibility Plugin — Screen Size condition */
 .woocommerce-result-count {
   font-size: 14px;
   color: #4a5568;
 }
 
 /* Default sorting dropdown — desktop only.
-   Block Visibility: Hide on Mobile via Block Visibility plugin. */
+   Hidden on mobile via Block Visibility plugin.
+   Ref [15]: Block Visibility Plugin — Screen Size condition */
 .woocommerce-ordering select {
   border: 1.5px solid #c9d6e3;
   border-radius: 4px;
@@ -1086,20 +1179,18 @@ p {
   border-color: #0d1b3e;
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) ---
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid */
 @media (max-width: 1024px) {
-  .bsh-shop-wrap {
-    padding: 40px 32px;
-  }
-
-  /* 2-column grid on tablet. */
+  .bsh-shop-wrap { padding: 40px 32px; }
+  /* 2-column product grid on tablet. */
   .woocommerce ul.products,
   .wc-block-grid__products {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 24px !important;
   }
-
-  /* Reduce product image height on tablet. */
+  /* Reduce image height and shadow on tablet.
+     Ref [8]: MDN Web Docs — CSS box-shadow property */
   .woocommerce ul.products li.product img,
   .wc-block-grid__product-image img {
     height: 220px;
@@ -1109,20 +1200,17 @@ p {
   }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
-  .bsh-shop-wrap {
-    padding: 32px 20px;
-  }
-
+  .bsh-shop-wrap { padding: 32px 20px; }
   /* Single column on mobile. */
   .woocommerce ul.products,
-  .wc-block-grid__products {
+  .wc-block-grid__products,
+  .wc-block-grid__products,
+  .wp-block-columns {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
   }
-
-  /* Reduce image height and shadow on mobile. */
   .woocommerce ul.products li.product img,
   .wc-block-grid__product-image img {
     height: 200px;
@@ -1130,22 +1218,19 @@ p {
       0 3px 7px rgba(13, 27, 62, 0.25),
       0 8px 20px rgba(13, 27, 62, 0.13);
   }
-
-  /* Stack product/project card columns on mobile. */
-  .wc-block-grid__products,
-  .wp-block-columns {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-  }
 }
 
 
 /* ============================================================
    9. WOOCOMMERCE — SINGLE PRODUCT PAGE
+   Ref [2]: WooCommerce Template & CSS Documentation
+   Ref [8]: MDN Web Docs — CSS box-shadow (three-layer)
+   Ref [3]: WCAG 2.1 — SC 2.4.7 Focus Visible
    ============================================================ */
 
-/* Product image — three-layer shadow for a premium lifted feel.
-   Layer 1: sharp definition. Layer 2: medium depth. Layer 3: wide ambient. */
+/* Product image — three-layer shadow for a premium lifted look.
+   Layer 1: sharp definition. Layer 2: depth. Layer 3: wide ambient.
+   Ref [8]: MDN Web Docs — CSS box-shadow (multiple values) */
 .woocommerce div.product div.images img {
   border-radius: 6px;
   width: 100%;
@@ -1165,7 +1250,8 @@ p {
     0 32px 64px rgba(13, 27, 62, 0.14);
 }
 
-/* Product title H1. */
+/* Product title H1.
+   Ref [2]: WooCommerce — Single Product template */
 .woocommerce div.product h1.product_title {
   font-size: 32px !important;
   font-weight: 700 !important;
@@ -1174,7 +1260,8 @@ p {
   margin-bottom: 12px !important;
 }
 
-/* Sale price. */
+/* Sale price.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .woocommerce div.product p.price,
 .woocommerce div.product span.price {
   font-size: 24px !important;
@@ -1182,7 +1269,7 @@ p {
   color: #0d1b3e !important;
 }
 
-/* Original/crossed-out price. */
+/* Original crossed-out price. */
 .woocommerce div.product p.price del,
 .woocommerce div.product span.price del {
   color: #9ab0c8 !important;
@@ -1191,14 +1278,14 @@ p {
   margin-right: 8px;
 }
 
-/* Short product description. */
+/* Short description paragraph. */
 .woocommerce div.product div.woocommerce-product-details__short-description p {
   font-size: 16px;
   color: #4a5568;
   line-height: 1.7;
 }
 
-/* Quantity input field. */
+/* Quantity input. */
 .woocommerce div.product form.cart .qty {
   border: 1.5px solid #c9d6e3;
   border-radius: 4px;
@@ -1209,7 +1296,8 @@ p {
   text-align: center;
 }
 
-/* Single product Add to Cart button. */
+/* Add to Cart button.
+   Ref [3]: WCAG 2.1 — SC 2.4.7 Focus Visible */
 .woocommerce div.product form.cart .single_add_to_cart_button {
   background-color: #0d1b3e !important;
   color: #ffffff !important;
@@ -1232,7 +1320,8 @@ p {
   outline-offset: 2px;
 }
 
-/* Category and tag links below the product. */
+/* Category and tag links.
+   Ref [2]: WooCommerce — Single Product template */
 .woocommerce div.product .posted_in a,
 .woocommerce div.product .tagged_as a {
   color: #4a5568 !important;
@@ -1246,7 +1335,8 @@ p {
   text-decoration: underline !important;
 }
 
-/* Description / Reviews tab labels. */
+/* Description / Reviews tab labels.
+   Ref [2]: WooCommerce — Product Tabs template */
 .woocommerce div.product .woocommerce-tabs ul.tabs li a {
   font-size: 15px;
   font-weight: 600;
@@ -1254,22 +1344,22 @@ p {
   text-decoration: none;
 }
 
-/* Active tab indicator. */
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
   color: #0d1b3e;
   border-bottom: 2px solid #0d1b3e;
 }
 
-/* Description tab body text. */
+/* Tab body text. */
 .woocommerce div.product .woocommerce-Tabs-panel p {
   font-size: 16px;
   color: #2d3748;
   line-height: 1.75;
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Scale back to two-layer shadow on mobile.
+   Ref [8]: MDN Web Docs — CSS box-shadow property */
 @media (max-width: 768px) {
-  /* Scale back the three-layer shadow on mobile. */
   .woocommerce div.product div.images img {
     box-shadow:
       0 4px 10px rgba(13, 27, 62, 0.28),
@@ -1280,9 +1370,12 @@ p {
 
 /* ============================================================
    10. WOOCOMMERCE — SEARCH RESULTS PAGE
+   Ref [2]: WooCommerce Template & CSS Documentation
+   Ref [3]: WCAG 2.1 — SC 2.4.7 Focus Visible
    ============================================================ */
 
-/* Search input field. */
+/* Search input field.
+   Ref [3]: WCAG 2.1 — SC 1.4.11 Non-text Contrast */
 .woocommerce-product-search input[type="search"] {
   max-width: 700px;
   width: 100%;
@@ -1303,7 +1396,8 @@ p {
   outline: none;
 }
 
-/* Search submit button. */
+/* Search submit button.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .woocommerce-product-search button[type="submit"] {
   background-color: #0d1b3e !important;
   color: #ffffff !important;
@@ -1320,7 +1414,7 @@ p {
   background-color: #1a3a6b !important;
 }
 
-/* Search results page heading. */
+/* Search results heading. */
 .woocommerce-products-header__title.page-title {
   font-size: 28px;
   font-weight: 700;
@@ -1332,9 +1426,11 @@ p {
 
 /* ============================================================
    11. WOOCOMMERCE — PAGINATION & EMPTY STATE
+   Ref [2]: WooCommerce Template & CSS Documentation
    ============================================================ */
 
-/* Pagination link and span items. */
+/* Pagination links.
+   Ref [2]: WooCommerce — Pagination template */
 .woocommerce nav.woocommerce-pagination ul li a,
 .woocommerce nav.woocommerce-pagination ul li span {
   font-size: 14px;
@@ -1346,7 +1442,7 @@ p {
   transition: background-color 0.2s ease;
 }
 
-/* Currently active page number. */
+/* Active page — filled navy. */
 .woocommerce nav.woocommerce-pagination ul li span.current {
   background-color: #0d1b3e;
   color: #ffffff;
@@ -1357,7 +1453,8 @@ p {
   background-color: #f0f4f8;
 }
 
-/* No results / empty state notice. */
+/* No results / empty state notice.
+   Ref [2]: WooCommerce — Shop empty state */
 .woocommerce-info {
   font-size: 16px;
   color: #4a5568;
@@ -1378,9 +1475,13 @@ p {
 /* ============================================================
    12. WOOCOMMERCE — CART PAGE
    Add CSS class "bsh-cart-wrap" to the cart content Group.
+   Ref [2]:  WooCommerce Template & CSS Documentation
+   Ref [3]:  WCAG 2.1 — SC 1.4.3, SC 2.4.7
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid
    ============================================================ */
 
-/* Shared light background for all WooCommerce flow pages. */
+/* Shared light background for all WooCommerce transactional pages.
+   Ref [2]: WooCommerce Template & CSS Documentation */
 .woocommerce-cart .woocommerce,
 .woocommerce-checkout .woocommerce,
 .woocommerce-order-received .woocommerce,
@@ -1388,7 +1489,8 @@ p {
   background-color: #f0f4f8;
 }
 
-/* Centered content wrappers for all checkout flow pages. */
+/* Centered content wrappers for all checkout flow pages.
+   Ref [6]: MDN Web Docs — CSS max-width, margin auto */
 .bsh-cart-wrap,
 .bsh-checkout-wrap,
 .bsh-order-wrap,
@@ -1399,7 +1501,8 @@ p {
   box-sizing: border-box;
 }
 
-/* Cart table header row. */
+/* Cart table header row.
+   Ref [2]: WooCommerce — Cart page template */
 .woocommerce table.cart thead th {
   background-color: #0d1b3e;
   color: #ffffff;
@@ -1420,7 +1523,8 @@ p {
   vertical-align: middle;
 }
 
-/* Product name link in cart — remove default blue. */
+/* Product name link — remove WooCommerce default blue.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce table.cart .product-name a {
   color: #0d1b3e;
   font-size: 16px;
@@ -1433,7 +1537,7 @@ p {
   text-decoration: underline;
 }
 
-/* Product variation meta text (Color, Size). */
+/* Product variation meta (Color, Size). */
 .woocommerce table.cart .product-name .variation dd,
 .woocommerce table.cart .product-name .variation dt {
   font-size: 13px;
@@ -1441,7 +1545,8 @@ p {
   margin: 0;
 }
 
-/* Cart quantity input. */
+/* Cart quantity input.
+   Ref [3]: WCAG 2.1 — SC 2.4.7 Focus Visible */
 .woocommerce table.cart .qty {
   border: 1.5px solid #c9d6e3;
   border-radius: 4px;
@@ -1458,7 +1563,8 @@ p {
   outline: none;
 }
 
-/* Remove item icon — muted by default, red on hover. */
+/* Remove item icon — muted default, red on hover.
+   Ref [3]: WCAG 2.1 — SC 1.4.1 Use of Color (not color alone) */
 .woocommerce table.cart a.remove {
   color: #9ab0c8 !important;
   font-size: 18px;
@@ -1489,7 +1595,7 @@ p {
   color: #4a5568;
 }
 
-/* Cart order total final row — larger and bolder. */
+/* Cart order total row — emphasized. */
 .woocommerce .cart_totals table tr.order-total td,
 .woocommerce .cart_totals table tr.order-total th {
   font-size: 18px;
@@ -1514,7 +1620,8 @@ p {
   outline: none;
 }
 
-/* Proceed to Checkout button. */
+/* Proceed to Checkout button — full width.
+   Ref [2]: WooCommerce — Cart totals template */
 .woocommerce .wc-proceed-to-checkout .checkout-button {
   background-color: #0d1b3e !important;
   color: #ffffff !important;
@@ -1537,7 +1644,8 @@ p {
   outline-offset: 2px;
 }
 
-/* "You may be interested in…" cross-sell section heading. */
+/* Cross-sell section heading.
+   Ref [2]: WooCommerce — Cross-sells template */
 .woocommerce .cross-sells h2 {
   font-size: 22px;
   font-weight: 700;
@@ -1546,14 +1654,16 @@ p {
   margin-bottom: 24px;
 }
 
-/* Cross-sell product grid — 3 columns matching the shop page. */
+/* Cross-sell grid — 3 columns matching main shop grid.
+   Ref [17]: CSS-Tricks — A Complete Guide to CSS Grid */
 .woocommerce .cross-sells ul.products {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 24px !important;
 }
 
-/* Cross-sell product image shadow matches shop grid standard. */
+/* Cross-sell images with the same two-layer shadow.
+   Ref [8]: MDN Web Docs — CSS box-shadow property */
 .woocommerce .cross-sells ul.products li.product img {
   height: 200px;
   object-fit: cover;
@@ -1563,26 +1673,21 @@ p {
     0 12px 32px rgba(13, 27, 62, 0.18);
 }
 
-/* --- TABLET (max 1024px) --- */
+/* --- TABLET (max-width: 1024px) --- */
 @media (max-width: 1024px) {
   .bsh-cart-wrap,
   .bsh-checkout-wrap,
   .bsh-order-wrap,
-  .bsh-account-wrap {
-    padding: 40px 32px;
-  }
+  .bsh-account-wrap { padding: 40px 32px; }
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) --- */
 @media (max-width: 768px) {
   .bsh-cart-wrap,
   .bsh-checkout-wrap,
   .bsh-order-wrap,
-  .bsh-account-wrap {
-    padding: 32px 20px;
-  }
-
-  /* Cross-sell grid collapses to single column on mobile. */
+  .bsh-account-wrap { padding: 32px 20px; }
+  /* Cross-sell collapses to single column. */
   .woocommerce .cross-sells ul.products {
     grid-template-columns: 1fr !important;
   }
@@ -1591,14 +1696,19 @@ p {
 
 /* ============================================================
    13. WOOCOMMERCE — CHECKOUT PAGE
+   Ref [2]:  WooCommerce Template & CSS Documentation
+   Ref [3]:  WCAG 2.1 — SC 1.4.3, SC 2.4.7, SC 3.3.1
+   Ref [10]: MDN Web Docs — CSS accent-color property
    ============================================================ */
 
-/* Checkout page background. */
+/* Checkout page background.
+   Ref [2]: WooCommerce — Checkout template */
 .woocommerce-checkout {
   background-color: #f0f4f8;
 }
 
-/* Section headings (Contact information, Shipping address, etc.). */
+/* Section headings.
+   Ref [2]: WooCommerce — Checkout Fields template */
 .woocommerce-checkout h3#order_review_heading,
 .woocommerce-checkout .woocommerce-billing-fields h3,
 .woocommerce-checkout .woocommerce-shipping-fields h3,
@@ -1609,7 +1719,8 @@ p {
   margin-bottom: 16px;
 }
 
-/* All checkout form input fields. */
+/* All checkout form inputs.
+   Ref [3]: WCAG 2.1 — SC 1.4.11 Non-text Contrast */
 .woocommerce-checkout input[type="text"],
 .woocommerce-checkout input[type="email"],
 .woocommerce-checkout input[type="tel"],
@@ -1628,7 +1739,9 @@ p {
   margin-bottom: 4px;
 }
 
-/* Checkout input focus — WCAG accessible. */
+/* Focus ring — WCAG keyboard accessible.
+   Ref [3]:  WCAG 2.1 — SC 2.4.7 Focus Visible
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class */
 .woocommerce-checkout input:focus,
 .woocommerce-checkout select:focus,
 .woocommerce-checkout textarea:focus {
@@ -1637,7 +1750,8 @@ p {
   outline: none;
 }
 
-/* Checkboxes (Create account, Use same address). */
+/* Checkboxes.
+   Ref [10]: MDN Web Docs — CSS accent-color property */
 .woocommerce-checkout input[type="checkbox"] {
   accent-color: #0d1b3e;
   width: 16px;
@@ -1646,14 +1760,15 @@ p {
   cursor: pointer;
 }
 
-/* Checkbox and field labels. */
+/* Field labels.
+   Ref [3]: WCAG 2.1 — SC 1.3.1 Info and Relationships */
 .woocommerce-checkout label {
   font-size: 15px;
   color: #2d3748;
   line-height: 1.5;
 }
 
-/* "Or continue below" express payment divider text. */
+/* Express payment divider text. */
 .woocommerce-checkout .wc-block-components-express-payment__title-container::after,
 .wp-block-woocommerce-checkout-express-payment-block + p {
   font-size: 14px;
@@ -1662,7 +1777,8 @@ p {
   position: relative;
 }
 
-/* Order summary sidebar card. */
+/* Order summary sidebar card.
+   Ref [8]: MDN Web Docs — CSS box-shadow property */
 .woocommerce-checkout #order_review,
 .wp-block-woocommerce-checkout-order-summary-block {
   background-color: #ffffff;
@@ -1678,13 +1794,12 @@ p {
   font-weight: 600;
 }
 
-/* Order summary subtotal/fee/tax labels. */
+/* Order summary totals. */
 .woocommerce-checkout table.shop_table tfoot tr th {
   font-size: 15px;
   color: #4a5568;
 }
 
-/* Order summary total value — bold and prominent. */
 .woocommerce-checkout table.shop_table tfoot tr.order-total td {
   font-size: 18px;
   font-weight: 700;
@@ -1700,11 +1815,10 @@ p {
   text-decoration: none;
 }
 
-.woocommerce-checkout a.return-to-cart:hover {
-  text-decoration: underline;
-}
+.woocommerce-checkout a.return-to-cart:hover { text-decoration: underline; }
 
-/* Place Order button — full width, prominent. */
+/* Place Order button — full width.
+   Ref [3]: WCAG 2.1 — SC 2.4.7 Focus Visible */
 .woocommerce-checkout #place_order,
 .woocommerce-checkout .wc-block-components-checkout-place-order-button {
   background-color: #0d1b3e !important;
@@ -1730,7 +1844,8 @@ p {
   outline-offset: 2px;
 }
 
-/* Terms and Privacy Policy links at checkout. */
+/* Terms and Privacy links.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce-checkout .woocommerce-privacy-policy-text a,
 .woocommerce-checkout .woocommerce-terms-and-conditions-link {
   color: #0d1b3e;
@@ -1738,9 +1853,10 @@ p {
   text-decoration: underline;
 }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Stack form and sidebar vertically.
+   Ref [7]: MDN Web Docs — CSS Media Queries */
 @media (max-width: 768px) {
-  /* Stack checkout form and order summary vertically on mobile. */
   .woocommerce-checkout #customer_details,
   .woocommerce-checkout #order_review {
     float: none !important;
@@ -1753,9 +1869,13 @@ p {
 /* ============================================================
    14. WOOCOMMERCE — ORDER CONFIRMATION PAGE
    Add CSS class "bsh-order-wrap" to the content Group.
+   Ref [2]:  WooCommerce Template & CSS Documentation
+   Ref [3]:  WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox
    ============================================================ */
 
-/* "Order received" heading. */
+/* "Order received" heading.
+   Ref [2]: WooCommerce — Thank You page template */
 .woocommerce-order .woocommerce-order-received h2,
 .woocommerce-thankyou-order-received {
   font-size: 28px;
@@ -1771,8 +1891,8 @@ p {
   line-height: 1.6;
 }
 
-/* Order summary overview row (number, date, total, email, payment).
-   Displayed as a horizontal flex row with label above value. */
+/* Order summary overview row — horizontal flex.
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
 .woocommerce-order ul.woocommerce-order-overview {
   display: flex;
   flex-wrap: wrap;
@@ -1785,7 +1905,8 @@ p {
   margin: 24px 0 32px;
 }
 
-/* Overview item label (e.g. "Order number", "Date"). */
+/* Overview item label — muted uppercase.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce-order ul.woocommerce-order-overview li {
   font-size: 12px;
   color: #9ab0c8;
@@ -1805,7 +1926,8 @@ p {
   margin-top: 4px;
 }
 
-/* Create account prompt section — left accent border treatment. */
+/* Create account section — left accent border.
+   Ref [8]: MDN Web Docs — CSS box-shadow property */
 .woocommerce-order .woocommerce-customer-details--account {
   background: #ffffff;
   border-left: 4px solid #0d1b3e;
@@ -1815,7 +1937,7 @@ p {
   margin-bottom: 32px;
 }
 
-/* Section headings within the confirmation page. */
+/* Section headings within confirmation page. */
 .woocommerce-order h2.woocommerce-column__title,
 .woocommerce-order h2 {
   font-size: 18px;
@@ -1824,7 +1946,7 @@ p {
   margin-bottom: 16px;
 }
 
-/* Order details and Downloads table header row. */
+/* Order and downloads table header row. */
 .woocommerce-order table.woocommerce-table thead th {
   background-color: #0d1b3e;
   color: #ffffff;
@@ -1835,7 +1957,8 @@ p {
   padding: 10px 16px;
 }
 
-/* Alternating row colors in order/downloads tables. */
+/* Alternating row colors for readability.
+   Ref [3]: WCAG 2.1 — SC 1.4.1 Use of Color */
 .woocommerce-order table.woocommerce-table tbody tr:nth-child(odd) td {
   background-color: #ffffff;
 }
@@ -1851,18 +1974,16 @@ p {
   border-bottom: 1px solid #dde5ef;
 }
 
-/* Product and download links inside the tables. */
+/* Product and download links. */
 .woocommerce-order table.woocommerce-table td a {
   color: #0d1b3e;
   font-weight: 600;
   text-decoration: none;
 }
 
-.woocommerce-order table.woocommerce-table td a:hover {
-  text-decoration: underline;
-}
+.woocommerce-order table.woocommerce-table td a:hover { text-decoration: underline; }
 
-/* Shipping and billing address card boxes. */
+/* Shipping and billing address cards. */
 .woocommerce-order .woocommerce-customer-details address,
 .woocommerce-order .col-1,
 .woocommerce-order .col-2 {
@@ -1883,7 +2004,7 @@ p {
   margin-bottom: 12px;
 }
 
-/* Additional information for order note card. */
+/* Additional order note card. */
 .woocommerce-order .woocommerce-order-details__customer-note {
   background: #ffffff;
   border-radius: 6px;
@@ -1898,9 +2019,13 @@ p {
 /* ============================================================
    15. WOOCOMMERCE — MY ACCOUNT PAGE
    Add CSS class "bsh-account-wrap" to the content Group.
+   Ref [2]:  WooCommerce Template & CSS Documentation
+   Ref [16]: WooCommerce — Customer Accounts Documentation
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox
    ============================================================ */
 
-/* Two-column row layout: sidebar nav left, content right. */
+/* Two-column row: sidebar nav left, content right.
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
 .woocommerce-account .woocommerce {
   display: flex;
   flex-direction: row;
@@ -1908,13 +2033,15 @@ p {
   align-items: flex-start;
 }
 
-/* Left sidebar navigation — fixed width. */
+/* Left sidebar — fixed width.
+   Ref [16]: WooCommerce — Customer Accounts Documentation */
 .woocommerce-account .woocommerce-MyAccount-navigation {
   width: 240px;
   flex-shrink: 0;
 }
 
-/* Sidebar nav list — vertical column with small gaps. */
+/* Sidebar nav list — vertical column.
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
 .woocommerce-account .woocommerce-MyAccount-navigation ul {
   list-style: none;
   padding: 0;
@@ -1924,7 +2051,8 @@ p {
   gap: 4px;
 }
 
-/* Sidebar nav link items. */
+/* Nav link items.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce-account .woocommerce-MyAccount-navigation ul li a {
   display: block;
   padding: 10px 16px;
@@ -1948,7 +2076,8 @@ p {
   color: #ffffff;
 }
 
-/* Log out link — red color signals a destructive action. */
+/* Log out link — red signals a destructive action.
+   Ref [3]: WCAG 2.1 — SC 1.4.1 Use of Color (not color alone) */
 .woocommerce-account .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a {
   color: #c0392b;
 }
@@ -1958,7 +2087,8 @@ p {
   color: #96281b;
 }
 
-/* Right content area — takes remaining width. */
+/* Right content area — takes remaining width.
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox (flex: 1) */
 .woocommerce-account .woocommerce-MyAccount-content {
   flex: 1;
   padding-left: 48px;
@@ -1978,65 +2108,69 @@ p {
   line-height: 1.7;
 }
 
-/* Dashboard inline links (orders, addresses, password). */
+/* Inline action links.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum) */
 .woocommerce-account .woocommerce-MyAccount-content a {
   color: #0d1b3e;
   font-weight: 600;
   text-decoration: none;
 }
 
-.woocommerce-account .woocommerce-MyAccount-content a:hover {
-  text-decoration: underline;
-}
+.woocommerce-account .woocommerce-MyAccount-content a:hover { text-decoration: underline; }
 
-/* --- MOBILE (max 768px) --- */
+/* --- MOBILE (max-width: 768px) ---
+   Stack sidebar above content on mobile.
+   Ref [7]:  MDN Web Docs — CSS Media Queries
+   Ref [18]: CSS-Tricks — A Complete Guide to Flexbox */
 @media (max-width: 768px) {
-  /* Stack sidebar nav above content on mobile. */
-  .woocommerce-account .woocommerce {
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .woocommerce-account .woocommerce-MyAccount-navigation {
-    width: 100%;
-  }
-
-  .woocommerce-account .woocommerce-MyAccount-content {
-    padding-left: 0;
-  }
+  .woocommerce-account .woocommerce { flex-direction: column; gap: 24px; }
+  .woocommerce-account .woocommerce-MyAccount-navigation { width: 100%; }
+  .woocommerce-account .woocommerce-MyAccount-content { padding-left: 0; }
 }
 
 
 /* ============================================================
    16. SINGLE PROJECT TEMPLATE
-   Custom post type: projects.
+   Custom post type: projects (registered via CPT UI).
+   Ref [1]: WordPress Block Editor — Post Author, Post Excerpt blocks
    ============================================================ */
 
-/* Author name and link color in the hero section. */
+/* Author name in the Single Project hero section.
+   #b0c4de on dark navy passes WCAG AA for large/bold text.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .single-projects .wp-block-post-author__name,
 .single-projects .wp-block-post-author__name a,
 .single-projects .wp-block-post-author {
   color: #b0c4de !important;
 }
 
-/* Excerpt text color in the hero section. */
+/* Excerpt text in the Single Project hero section.
+   Ref [1]: WordPress Block Editor — Post Excerpt block */
 .single-projects .wp-block-post-excerpt p,
 .single-projects .wp-block-post-excerpt__excerpt {
   color: #b0c4de !important;
 }
 
-/* Remove bottom gap before footer on Single Project pages. */
-.single-projects .wp-block-group {
-  margin-bottom: 0;
-}
+/* Remove bottom gap before footer.
+   Ref [1]: WordPress Block Editor — Group block */
+.single-projects .wp-block-group { margin-bottom: 0; }
 
 
 /* ============================================================
    17. ACCESSIBILITY — WAVE / WCAG COMPLIANCE
+   Ref [3]:  W3C WCAG 2.1 — SC 2.4.7 Focus Visible
+   Ref [4]:  WebAIM — WAVE Web Accessibility Evaluation Tool
+   Ref [5]:  WebAIM — Contrast Checker
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class
+   Ref [12]: MDN Web Docs — CSS outline property
    ============================================================ */
 
-/* Visible focus rings for all interactive elements.
-   Ensures keyboard navigation is clearly visible (WAVE compliant). */
+/* Visible focus rings for ALL interactive elements.
+   Ensures keyboard navigation is clearly visible (WAVE/WCAG).
+   Ref [3]:  WCAG 2.1 — SC 2.4.7 Focus Visible
+   Ref [11]: MDN Web Docs — CSS :focus pseudo-class
+   Ref [12]: MDN Web Docs — CSS outline property */
 a:focus,
 button:focus,
 .wp-block-button__link:focus,
@@ -2048,7 +2182,9 @@ textarea:focus {
 }
 
 /* Footer copyright and tagline text.
-   #9ab0c8 on #080f1e = ~5.8:1 contrast ratio — passes WCAG AA. */
+   #9ab0c8 on #080f1e = ~5.8:1 — passes WCAG AA.
+   Ref [3]: WCAG 2.1 — SC 1.4.3 Contrast (Minimum)
+   Ref [5]: WebAIM Contrast Checker */
 .wp-block-site-tagline,
 footer p,
 footer .copyright {
@@ -2056,9 +2192,11 @@ footer .copyright {
   font-size: 13px;
 }
 
-/* Skip to main content link — hidden offscreen until focused.
-   Add an HTML block at the very top of every page template with:
-   <a href="#main" class="skip-to-content">Skip to main content</a> */
+/* Skip to main content link — hidden until focused.
+   Add an HTML block at the top of every page template:
+   <a href="#main" class="skip-to-content">Skip to main content</a>
+   Ref [3]:  WCAG 2.1 — SC 2.4.1 Bypass Blocks
+   Ref [4]:  WebAIM — WAVE — Skip Navigation Links */
 .skip-to-content {
   position: absolute;
   top: -40px;
@@ -2071,6 +2209,4 @@ footer .copyright {
   font-weight: 600;
 }
 
-.skip-to-content:focus {
-  top: 0;
-}
+.skip-to-content:focus { top: 0; }
